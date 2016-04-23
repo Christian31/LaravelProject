@@ -1,0 +1,1 @@
+@extends('vistas_cliente.layoutCliente')
