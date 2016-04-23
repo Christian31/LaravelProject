@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//admin 
+Route::get('/inicioAdmin',function(){
+	return view('vistas_admin.inicioAdmin');
+});
