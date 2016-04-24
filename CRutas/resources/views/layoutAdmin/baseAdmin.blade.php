@@ -54,6 +54,7 @@
     <div class="wrapper">
       
       <header class="main-header">
+
         <!-- Logo -->
         <a href="index2.html" class="logo"><b>CRutas</b></a>
         <!-- Header Navbar: style can be found in header.less -->
@@ -190,6 +191,9 @@
     {!!Html::script('admin/dist/js/demo.js')!!}
 
     {!!Html::script('admin/js/jquery.validate.js')!!}
+
+    {!!Html::script('admin/js/routes.js')!!}
+
 
     @yield('scripts')
   </body>

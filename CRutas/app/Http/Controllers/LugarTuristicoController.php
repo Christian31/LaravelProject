@@ -49,6 +49,8 @@ class LugarTuristicoController extends Controller
     public function store(Request $request)
     {
         //
+        $nombre=$_POST['nombre'];
+        return response()->json(['lugar'=> $nombre]);
     }
 
     /**
@@ -94,5 +96,12 @@ class LugarTuristicoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function insertarLugar(Request $request)
+    {
+
+        $nombre=$_POST['nombre'];
+        return response()->json(['lugar'=> $nombre]);
     }
 }
