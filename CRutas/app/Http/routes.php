@@ -14,11 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/resultados', function () {
+    return view('vistas_cliente.listaBusqueda');
+});
 
 //admin 
 Route::get('/inicioAdmin',function(){
 	return view('vistas_admin.inicioAdmin');
 });
 
-// Ruta turistica
-Route::resource('rutaT', 'RutaTuristicaController');
+// Lugar turistico
+Route::resource('lugarTuristico', 'LugarTuristicoController');
+//Ruta Turistica
+Route::resource('rutaTuristica', 'RutaTuristicaController');
+Route::get('recorridoVirtual', 'RutaTuristicaController@vistaDetalleRuta');

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Ubicacion;
 
-class RutaTuristicaController extends Controller
+class LugarTuristicoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +16,18 @@ class RutaTuristicaController extends Controller
      */
     public function index()
     {
-       return view('vistas_cliente.buscar_ruta'); 
-    }
-    public function vistaDetalleRuta(){
-         return view('vistas_cliente.detalle_ruta'); 
+        //
+        $ubicacion1=new Ubicacion;
+        $ubicacion1->id=1;
+        $ubicacion1->nombre='Paraíso,Cartago';
+        $ubicacion2=new Ubicacion;
+        $ubicacion2->id=2;
+        $ubicacion2->nombre='Liberia,Guanacaste';
+        $ubicaciones=array();
+        array_push($ubicaciones, $ubicacion1);
+        array_push($ubicaciones, $ubicacion2);
+        
+        return view('vistas_admin.ruta_turistica.insertar',compact('ubicaciones')); 
     }
 
     /**

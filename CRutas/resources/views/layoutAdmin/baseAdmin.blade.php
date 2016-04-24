@@ -113,7 +113,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{!!URL::to('/rutaT')!!}"><i class="fa fa-circle-o"></i>Insertar</a></li>
+                <li><a href="{!!URL::to('/lugarTuristico')!!}"><i class="fa fa-circle-o"></i>Insertar</a></li>
                 <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Mantener</a></li>
                 
               </ul>

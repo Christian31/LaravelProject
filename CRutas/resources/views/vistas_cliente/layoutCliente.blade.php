@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Modus-Versus a bootstrap Website Template | Home :: w3layouts</title>
+<title>CRutas</title>
 <!-- Bootstrap -->
 <link href="cliente/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <link href="cliente/css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -195,8 +195,9 @@ $(document).ready(function() {
 		<a id="touch-menu" class="mobile-menu" href="#">Menu</a>
 		<nav>
 		<ul class="menu list-unstyled">
-			<li class="activate"><a href="index.html">HOME</a></li>
-			<li><a href="about.html">Buscar rutas turísticas</a></li>
+			<li><a href="{!!URL::to('/')!!}">INICIO</a></li>
+			<li><a href="{!!URL::to('nosotros')!!}">Nosotros</a></li>
+			<li><a href="{!!URL::to('rutaTuristica')!!}">Buscar rutas turísticas</a></li>
 			<li><a href="service.html">services</a></li>
 			<li><a href="portfolio.html">PORTFOLIO</a>
 			<ul class="sub-menu list-unstyled">
@@ -211,12 +212,10 @@ $(document).ready(function() {
 				</li>
 			</ul>
 			</li>
-			<li><a href="blog.html">BLOG</a></li>
-			<li><a href="feature.html">feature</a></li>
 			<li><a href="contact.html">CONTACT</a></li>
 		</ul>
 		</nav>
-		<script src="js/menu.js" type="text/javascript"></script>
+		<script src="cliente/js/menu.js" type="text/javascript"></script>
 		</div>
 		<div class="clearfix"></div>
 	</div>
@@ -227,6 +226,8 @@ $(document).ready(function() {
 
 
 </div>
+@yield('tabla')
+
 <div class="footer_bg"><!-- start footer -->
 <div class="container">
 	<div class="footer">
