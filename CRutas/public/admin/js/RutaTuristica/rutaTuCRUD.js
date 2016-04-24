@@ -49,3 +49,36 @@ function insertarRuta(){
 
 
 }
+
+function listarLugares(){
+	var oTable = $('#tabla_lugares').dataTable();
+   //Refrescar la tabla
+    oTable.fnDestroy( 0 );
+
+	var tablaDatos = $("#datos");
+	var route =getBaseDir()+"listadoLugaresTuristicos";
+	var routeEdit=getBaseDir()+"lugarTuristico/"
+
+	$("#datos").empty();//Pregunta si la tabla esta vacia
+	$.get(route, function(response){
+		$(response).each(function(key,value){//Aqui se iteran todos los generos
+			//Mediante apend se van agregando las filas
+			tablaDatos.append(
+				"<tr>"+
+				"<td>"+value.id+"</td>"+
+				"<td>"+value.nombre+"</td>"+
+				"<td>"+value.ubicacion+"</td>"+
+				"<td><a href="+routeEdit+value.id+"/edit"+"><img class='iq-boton-editar'/></a></td>"+
+				"<td><img class='iq-boton-eliminar' OnClick='eliminarCategoria("+value.id+");'/></td>"+
+				"</tr>"
+			);
+		});
+		$('#tabla_categorias').DataTable({
+
+          "retrieve": false,
+       	  "language": {
+            "url": "plugins/datatables/Spanish.json"
+        }
+        });
+	});
+}

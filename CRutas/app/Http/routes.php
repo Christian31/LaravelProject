@@ -25,6 +25,7 @@ Route::get('/inicioAdmin',function(){
 
 // Lugar turistico
 Route::resource('lugarTuristico', 'LugarTuristicoController');
+Route::get('listadoLugaresTuristicos','LugarTuristicoController@listadoLugaresTuristicos');
 
 //Ruta Turistica
 Route::resource('rutaTuristica', 'RutaTuristicaController');
