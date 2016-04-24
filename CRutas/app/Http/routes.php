@@ -20,8 +20,5 @@ Route::get('/inicioAdmin',function(){
 	return view('vistas_admin.inicioAdmin');
 });
 
-Route::get('/inicio',function(){
-	return view('vistas_cliente.inicio');
-});
 // Ruta turistica
 Route::resource('rutaT', 'RutaTuristicaController');
