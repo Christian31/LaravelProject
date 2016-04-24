@@ -23,3 +23,5 @@ Route::get('/inicioAdmin',function(){
 Route::get('/inicio',function(){
 	return view('vistas_cliente.inicio');
 });
+// Ruta turistica
+Route::resource('rutaT', 'RutaTuristicaController');
