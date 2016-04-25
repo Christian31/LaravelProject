@@ -16,31 +16,31 @@
               <strong id="msj">Ocurrio un error</strong>
           </div>
                 <div class="box-header">
-                  <h3 class="box-title">Insertar Ruta Turística</h3>
+                  <h3 class="box-title">Editar Ruta Turística</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form  id="insertR" name="insertR" method="POST" enctype="multipart/form-data">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="nombre">Nombre</label>
-                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
+                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{$lugar1->nombre}}">
                     </div>
                     <div class="form-group">
                       <label for="descripcion">Descripción</label>
-                      <textarea id="descripcion" name="descripcion"  class="form-control" placeholder="Descripción"></textarea>
+                      <textarea id="descripcion" name="descripcion"  class="form-control" placeholder="Descripción">{{$lugar1->descripcion}}</textarea>
                     </div>
                      <div class="form-group">
                       <label for="duracionL">Duración en el lugar</label>
-                      <input type="text" class="form-control" id="duracionL" name="duracionL" placeholder="Duración en el lugar">
+                      <input type="text" class="form-control" id="duracionL" name="duracionL" placeholder="Duración en el lugar" value="{{$lugar1->duracionL}}">
                     </div>
                     <div class="form-group">
                       <label for="tiempoU">Tiempo de llegada desde la ubicación</label>
-                      <input type="text" class="form-control" id="tiempoU" name="tiempoU" placeholder="Tiempo de llegada desde la ubicación">
+                      <input type="text" class="form-control" id="tiempoU" name="tiempoU" placeholder="Tiempo de llegada desde la ubicación" value="{{$lugar1->tiempoU}}">
                     </div>
 
                     <div class="form-group">
                       <label for="distanciaU">Distancia desde la ubicación</label>
-                      <input type="text" class="form-control" id="distanciaU" name="distanciaU" placeholder="Distancia desde la ubicación">
+                      <input type="text" class="form-control" id="distanciaU" name="distanciaU" placeholder="Distancia desde la ubicación" value="{{$lugar1->distanciaU}}">
                     </div>
 
                       <div class="form-group">
@@ -64,7 +64,7 @@
                   </div><!-- /.box-body -->
 
                   <div class="box-footer">
-                    <button type="submit" onclick="insertarRuta();" class="btn btn-primary">Insertar</button>
+                    <button type="submit" onclick="editarLugar" class="btn btn-primary">Editar</button>
                   </div>
                 </form>
               </div><!-- /.box -->

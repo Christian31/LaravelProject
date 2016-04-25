@@ -74,6 +74,25 @@ class LugarTuristicoController extends Controller
     public function edit($id)
     {
         //
+         $lugar1=new LugarTuristico;
+        $lugar1->id=1;
+        $lugar1->nombre="Mirador de orosí";
+        $lugar1->descripcion="lugar con muchos arboles";
+        $lugar1->tiempoU=0.30;
+        $lugar1->distanciaU=2;
+        $lugar1->duracionL=3;
+
+        $ubicacion1=new Ubicacion;
+        $ubicacion1->id=1;
+        $ubicacion1->nombre='Paraíso,Cartago';
+        $ubicacion2=new Ubicacion;
+        $ubicacion2->id=2;
+        $ubicacion2->nombre='Liberia,Guanacaste';
+        $ubicaciones=array();
+        array_push($ubicaciones, $ubicacion1);
+        array_push($ubicaciones, $ubicacion2);
+
+        return view('vistas_admin.ruta_turistica.editar',compact('ubicaciones','lugar1'));
     }
 
     /**
@@ -86,6 +105,7 @@ class LugarTuristicoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        return response()->json();
     }
 
     /**
@@ -97,6 +117,7 @@ class LugarTuristicoController extends Controller
     public function destroy($id)
     {
         //
+        return response()->json();
     }
 
     public function insertarLugar(Request $request)
