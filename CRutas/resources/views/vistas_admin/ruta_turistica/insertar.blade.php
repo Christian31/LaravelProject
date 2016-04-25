@@ -6,11 +6,20 @@
             <div class="col-md-12">
               <!-- general form elements -->
               <div class="box box-primary">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+                <div id="msj-success" class="alert alert-success alert-dismissible" role="alert" style="
+                    display:none">
+                  <strong id="msj-su"></strong>
+               </div>
+              <div id="msj-error" class="alert alert-danger alert-dismissible" role="alert" style="
+                  display:none">
+              <strong id="msj">Ocurrio un error</strong>
+          </div>
                 <div class="box-header">
                   <h3 class="box-title">Insertar Ruta Turística</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" id="insertR" name="insertR">
+                <form  id="insertR" name="insertR" method="POST" enctype="multipart/form-data">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="nombre">Nombre</label>
@@ -47,7 +56,7 @@
 
 
                     <div class="form-group">
-                      <label for="imagen">Seleccionar una imagen</label>
+                      <label for="imagen">Seleccionar las imagenes</label>
                       <input required type="file" id="imagen" name="imagen">
                       
                     </div>
@@ -55,7 +64,7 @@
                   </div><!-- /.box-body -->
 
                   <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Insertar</button>
+                    <button type="submit" onclick="insertarRuta();" class="btn btn-primary">Insertar</button>
                   </div>
                 </form>
               </div><!-- /.box -->
@@ -65,5 +74,6 @@
 </center>
 @endsection
  @section('scripts')
- {!!Html::script('admin/js/validarRuta.js')!!}
+ 
+ {!!Html::script('admin/js/RutaTuristica/rutaTuCRUD.js')!!}
  @endsection

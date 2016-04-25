@@ -36,6 +36,11 @@
          {!!Html::style('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')!!}
         <!-- DataTables -->
         {!!Html::style('admin/plugins/datatables/dataTables.bootstrap.css')!!}
+
+        {!!Html::style('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')!!}
+<!-- DataTables -->
+      {!!Html::style('admin/plugins/datatables/dataTables.bootstrap.css')!!}
+      {!!Html::style('admin/css/style.css')!!} 
         <!-- Theme style -->
     
       
@@ -54,6 +59,7 @@
     <div class="wrapper">
       
       <header class="main-header">
+
         <!-- Logo -->
         <a href="index2.html" class="logo"><b>CRutas</b></a>
         <!-- Header Navbar: style can be found in header.less -->
@@ -113,8 +119,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{!!URL::to('/lugarTuristico')!!}"><i class="fa fa-circle-o"></i>Insertar</a></li>
-                <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Mantener</a></li>
+                <li><a href="{!!URL::to('/lugarTuristico/create')!!}"><i class="fa fa-circle-o"></i>Insertar</a></li>
+                <li><a href="{!!URL::to('/lugarTuristico')!!}"><i class="fa fa-circle-o"></i> Mantener</a></li>
                 
               </ul>
             </li>
@@ -190,6 +196,9 @@
     {!!Html::script('admin/dist/js/demo.js')!!}
 
     {!!Html::script('admin/js/jquery.validate.js')!!}
+
+    {!!Html::script('admin/js/routes.js')!!}
+
 
     @yield('scripts')
   </body>

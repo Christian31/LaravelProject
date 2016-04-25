@@ -1,0 +1,24 @@
+/*Clase boton*/
+.iq-boton-editar{
+    background-image: url("./img/edit-rojo.png");
+    background-repeat: no-repeat;
+    min-width: 90px;
+    min-height: 35px;
+    border: none;
+}
+.iq-boton-editar:hover{
+    background-image: url("./img/edit.png");
+    border: none;
+}
+
+.iq-boton-eliminar{
+    background-image: url("./img/trash-rojo.png");
+   background-repeat: no-repeat;
+    min-width: 90px;
+    min-height: 35px;
+  border: none;
+
+}
+.iq-boton-eliminar:hover{
+    background-image: url("./img/trash.png");
+}
