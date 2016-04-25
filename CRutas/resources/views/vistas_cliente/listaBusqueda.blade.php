@@ -17,7 +17,7 @@
 </div>
 </div>
 @endsection
-@section('tabla')
+@section('contenido2')
 <br>
 		<br>
 <div class="container">
@@ -47,4 +47,7 @@
 
 </div>
 </div>
+<script>
+$('#buscar').addClass('activate');
+</script>
 @endsection

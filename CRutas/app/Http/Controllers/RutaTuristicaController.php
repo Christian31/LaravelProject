@@ -21,6 +21,9 @@ class RutaTuristicaController extends Controller
     public function vistaDetalleRuta(){
          return view('vistas_cliente.detalle_ruta'); 
     }
+ public function vistaNosotros(){
+         return view('vistas_cliente.nosotros'); 
+    }
 
     /**
      * Show the form for creating a new resource.

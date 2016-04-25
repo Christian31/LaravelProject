@@ -195,9 +195,9 @@ $(document).ready(function() {
 		<a id="touch-menu" class="mobile-menu" href="#">Menu</a>
 		<nav>
 		<ul class="menu list-unstyled">
-			<li><a href="{!!URL::to('/')!!}">INICIO</a></li>
-			<li><a href="{!!URL::to('nosotros')!!}">Nosotros</a></li>
-			<li><a href="{!!URL::to('rutaTuristica')!!}">Buscar rutas turísticas</a></li>
+			<li id="inicio"><a href="{!!URL::to('/')!!}">INICIO</a></li>
+			<li id="nosotros"><a href="{!!URL::to('nosotros')!!}">Nosotros</a></li>
+			<li id="buscar"><a href="{!!URL::to('rutaTuristica')!!}">Buscar rutas turísticas</a></li>
 			<li><a href="service.html">services</a></li>
 			<li><a href="portfolio.html">PORTFOLIO</a>
 			<ul class="sub-menu list-unstyled">
@@ -226,7 +226,7 @@ $(document).ready(function() {
 
 
 </div>
-@yield('tabla')
+@yield('contenido2')
 
 <div class="footer_bg"><!-- start footer -->
 <div class="container">

@@ -28,3 +28,4 @@ Route::resource('lugarTuristico', 'LugarTuristicoController');
 //Ruta Turistica
 Route::resource('rutaTuristica', 'RutaTuristicaController');
 Route::get('recorridoVirtual', 'RutaTuristicaController@vistaDetalleRuta');
+Route::get('nosotros', 'RutaTuristicaController@vistaNosotros');

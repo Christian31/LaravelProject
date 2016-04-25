@@ -90,4 +90,7 @@
 
 </div>
 <br>
+<script>
+$('#inicio').addClass('activate');
+</script>
 @endsection
