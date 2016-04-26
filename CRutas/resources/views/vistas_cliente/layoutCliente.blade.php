@@ -198,7 +198,6 @@ $(document).ready(function() {
 			<li id="inicio"><a href="{!!URL::to('/')!!}">INICIO</a></li>
 			<li id="nosotros"><a href="{!!URL::to('nosotros')!!}">Nosotros</a></li>
 			<li id="buscar"><a href="{!!URL::to('rutaTuristica')!!}">Buscar rutas turísticas</a></li>
-			<li><a href="service.html">services</a></li>
 			<li><a href="portfolio.html">PORTFOLIO</a>
 			<ul class="sub-menu list-unstyled">
 				<li><a href="portfolio.html">Portfolio Page</a></li>
@@ -212,7 +211,7 @@ $(document).ready(function() {
 				</li>
 			</ul>
 			</li>
-			<li><a href="contact.html">CONTACT</a></li>
+			
 		</ul>
 		</nav>
 		<script src="cliente/js/menu.js" type="text/javascript"></script>

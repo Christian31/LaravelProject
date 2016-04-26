@@ -23,35 +23,41 @@
 @endsection
 @section('contenido2')
 <div class="container">
-  <center>
-    <div  class="main">
-     <div> <h3>Africa Safari</h3>
-      <strong>Distancia 5Km</strong>
+ <center>
+ <div class="main">
+    <div> <h3 style="color:#E8645A;">Africa Safari</h3>
+   <h6>  Distancia 5Km</h6>
     </div>
     <div class="slides">
       <img src="cliente/images/africa1.jpg">
       <img src="cliente/images/africa4.jpg">
       <img src="cliente/images/africa3.jpg">
     </div>
+
   </div>
+   
+  
   <div  class="main">
-    <div> <h3>Hidden Garden Art Gallery</h3></div>
-    
+    <div> <h3 style="color:#E8645A;">Hidden Garden Art Gallery</h3>
+    <h6>  Distancia 15Km</h6>
+    </div>
     <div class="slides">
       <img src="cliente/images/galery2.jpg">
       <img src="cliente/images/galery1.jpg">
       <img src="cliente/images/galery3.jpg">
     </div>
   </div>
-  
   <div  class="main">
-   <div> <h3>Pura Aventura</h3></div>
+   <div> <h3 style="color:#E8645A;">Pura Aventura</h3>
+   <h6>  Distancia 35Km</h6>
+   </div>
    <div class="slides">
     <img src="cliente/images/aventura4.jpg">
     <img src="cliente/images/aventura5.jpg">
     <img src="cliente/images/aventura6.jpg">
   </div>
 </div>
+
 <div id="mapa" style="width: 1000px; height: 500px;"> </div>
 <br>
 </center>
