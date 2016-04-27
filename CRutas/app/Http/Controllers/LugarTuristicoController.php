@@ -9,6 +9,11 @@ use App\Ubicacion;
 use App\LugarTuristico;
 class LugarTuristicoController extends Controller
 {
+
+     public function __construct()
+    {
+       // $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -102,7 +107,7 @@ class LugarTuristicoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
         return response()->json();

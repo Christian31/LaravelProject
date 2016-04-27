@@ -14,6 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//login 
+Route::get('login',function(){
+	return view('vistas_admin.login');
+});
 Route::get('/resultados', function () {
     return view('vistas_cliente.listaBusqueda');
 });
@@ -26,6 +31,7 @@ Route::get('/inicioAdmin',function(){
 // Lugar turistico
 Route::resource('lugarTuristico', 'LugarTuristicoController');
 Route::get('listadoLugaresTuristicos','LugarTuristicoController@listadoLugaresTuristicos');
+Route::post('lugarTuristico/update','LugarTuristicoController@update');
 
 //Ruta Turistica
 Route::resource('rutaTuristica', 'RutaTuristicaController');

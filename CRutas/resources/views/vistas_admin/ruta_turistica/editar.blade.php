@@ -21,6 +21,11 @@
                 <!-- form start -->
                 <form  id="insertR" name="insertR" method="POST" enctype="multipart/form-data">
                   <div class="box-body">
+
+                    <div class="form-group">
+                      <label for="id">Id</label>
+                      <input type="text" class="form-control" id="id" name="id" placeholder="Nombre" value="{{$lugar1->id}}" readonly>
+                    </div>
                     <div class="form-group">
                       <label for="nombre">Nombre</label>
                       <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{$lugar1->nombre}}">
@@ -57,14 +62,14 @@
 
                     <div class="form-group">
                       <label for="imagen">Seleccionar las imagenes</label>
-                      <input required type="file" id="imagen" name="imagen">
+                      <input required type="file" id="imagen" name="imagen" multiple accept="image/*">
                       
                     </div>
                     
                   </div><!-- /.box-body -->
 
                   <div class="box-footer">
-                    <button type="submit" onclick="editarLugar" class="btn btn-primary">Editar</button>
+                    <button type="submit" onclick="editarLugar" class="btn btn-primary" >Editar</button>
                   </div>
                 </form>
               </div><!-- /.box -->

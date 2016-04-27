@@ -3,7 +3,9 @@
 		<center>
 			 <div class="row">
             <!-- left column -->
-            <div class="col-md-12">
+            {{-- <div class="col-md-6" style="margin-left:25%" style="margin-rigth:25%"> --}}
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
               <!-- general form elements -->
               <div class="box box-primary">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
@@ -57,7 +59,7 @@
 
                     <div class="form-group">
                       <label for="imagen">Seleccionar las imagenes</label>
-                      <input required type="file" id="imagen" name="imagen">
+                      <input required type="file" id="imagen" name="imagen" multiple accept="image/*">
                       
                     </div>
                     
@@ -68,12 +70,14 @@
                   </div>
                 </form>
               </div><!-- /.box -->
+              </div><!--/.col (left) -->
+              <div class="col-md-3"></div>
   </div>
 
 </div>
 </center>
 @endsection
  @section('scripts')
- 
+ {!!Html::script('admin/js/validarRuta.js')!!}
  {!!Html::script('admin/js/RutaTuristica/rutaTuCRUD.js')!!}
  @endsection

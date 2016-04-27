@@ -1,6 +1,6 @@
 /*Clase boton*/
 .iq-boton-editar{
-    background-image: url("./img/edit-rojo.png");
+    background-image: url("./img/edit-rojo.jpg");
     background-repeat: no-repeat;
     min-width: 90px;
     min-height: 35px;
@@ -12,7 +12,7 @@
 }
 
 .iq-boton-eliminar{
-    background-image: url("./img/trash-rojo.png");
+    background-image: url("./img/trash-rojo.jpg");
    background-repeat: no-repeat;
     min-width: 90px;
     min-height: 35px;

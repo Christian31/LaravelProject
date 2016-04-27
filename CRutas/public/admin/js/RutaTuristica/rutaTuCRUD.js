@@ -73,11 +73,11 @@ function listarLugares(){
 				"</tr>"
 			);
 		});
-		$('#tabla_categorias').DataTable({
+		$('#tabla_lugares').DataTable({
 
           "retrieve": false,
        	  "language": {
-            "url": "plugins/datatables/Spanish.json"
+            "url": "admin/plugins/datatables/Spanish.json"
         }
         });
 	});
@@ -93,6 +93,7 @@ function editarLugar(){
 	var ubicacion=$("#ubicacion").val();
 	var inputFileImage = document.getElementById("imagen");
     var imagen = inputFileImage.files[0];
+    var id= $("#id").val();
 
     var route =getBaseDir()+"lugarTuristico/update";
     var token = $("#token").val();
@@ -106,6 +107,7 @@ function editarLugar(){
         dato.append('distanciaU',distanciaU);
         dato.append('ubicacion',ubicacion);
         dato.append('imagen',imagen);
+        dato.appaned('id',id);
 
         $.ajax({
 				url: route,
@@ -135,6 +137,7 @@ function editarLugar(){
 
 function eliminarLugar(id){
  	
+			
 			var route = getBaseDir()+"lugarTuristico/"+id+"";
 			var token = $("#token").val();
 			$.ajax({
@@ -143,6 +146,7 @@ function eliminarLugar(id){
 				type: 'DELETE',
 				dataType: 'json',
 				success: function(){
+					
 					$("#msj-success").fadeIn(2000);
 					$("#msj-success").fadeOut(2000);
 					listarLugares();

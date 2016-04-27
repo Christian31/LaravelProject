@@ -1,6 +1,7 @@
 @extends('layoutAdmin.baseAdmin')
 @section('main')
 <div class="row">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
           <div class="col-xs-2"></div>
           <div class="col-xs-8">
 
@@ -13,9 +14,7 @@
           <div  align="center" class="box-header">
                 <h2>Lugares Turísticos</h2>
               </div><!-- /.box-header -->
-              <div class="box-footer" align="right">
-                <a href="{!!URL::to('')!!}" class='btn btn-primary btn-lg btn-primaryß'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Agregar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-              </div>
+              
           <div class="box-body">
             <table id="tabla_lugares" class="table table-bordered table-striped">
               <thead>
