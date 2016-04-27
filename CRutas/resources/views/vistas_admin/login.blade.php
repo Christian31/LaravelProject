@@ -33,11 +33,13 @@
   <body class="login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="../../index2.html"><b>CRutas</b>Administrador</a>
+         <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+        <a href=""><b>CRutas</b>Administrador</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Inicie Sesión</p>
-        <form action="{!!URL::to('inicioAdmin')!!}" method="post">
+      
+          {!!Form::open(['url'=>'iniciarSesion', 'method'=>'POST'])!!}
           <div class="form-group has-feedback">
             <input type="text" class="form-control" name="nombreU" placeholder="Nombre Usuario"/>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -52,7 +54,7 @@
               <button type="submit" class="btn btn-primary ">Iniciar Sesión</button>
             </div><!-- /.col -->
           </div>
-        </form>
+         {!!Form::close()!!}
 
         
 

@@ -7,12 +7,17 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Ubicacion;
 use App\LugarTuristico;
+
+use Session;
 class LugarTuristicoController extends Controller
 {
 
      public function __construct()
     {
        // $this->middleware('auth');
+        if(!Session::has('success')){
+          $this->middleware('auth');
+        }
     }
     /**
      * Display a listing of the resource.

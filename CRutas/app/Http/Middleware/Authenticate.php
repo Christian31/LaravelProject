@@ -19,19 +19,15 @@ class Authenticate
     {
         
 
-          //if($nombreU=='admin' && $contrasena=='admin'){
-            //return $next($request);
-           
-           // return redirect()->guest('/inicioAdmin');
-          }
-       if (Auth::guard($guard)->guest()) {
-           if ($request->ajax() || $request->wantsJson()) {
+          if (Auth::guard($guard)->guest()) {
+            if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
             } else {
                 return redirect()->guest('login');
             }
         }
-            return $next($request);
+
+        return $next($request);
        
     }
 }
