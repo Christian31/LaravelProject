@@ -24,16 +24,17 @@ Route::get('/resultados', function () {
 });
 
 //admin 
-Route::get('/inicioAdmin',['middleware' => 'auth',function(){
+Route::get('/inicioAdmin',function(){
 	return view('vistas_admin.inicioAdmin');
-}]);
+});
 
 
 
 // Lugar turistico
 Route::resource('lugarTuristico', 'LugarTuristicoController');
 Route::get('listadoLugaresTuristicos','LugarTuristicoController@listadoLugaresTuristicos');
-Route::resource('lugarTuristico/update','LugarTuristicoController@update');
+Route::patch('lugarTuristico/update','LugarTuristicoController@update');
+Route::post('editarLugarTuristico','LugarTuristicoController@editar');
 //Ruta Turistica
 Route::resource('rutaTuristica', 'RutaTuristicaController');
 Route::get('recorridoVirtual', 'RutaTuristicaController@vistaDetalleRuta');

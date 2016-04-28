@@ -17,8 +17,10 @@ class UsuarioController extends Controller
 
     	 $nombreU=$_POST['nombreU'];
     	 $contrasena=$_POST['contrasena'];
+
     	 if($nombreU=='admin'&&$contrasena=='admin')
     	 {
+           
     	 	Session::put('admin', $nombreU);
 			Session::put('pass', $contrasena);
 			Session::put('success', 'success');

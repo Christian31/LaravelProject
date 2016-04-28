@@ -19,7 +19,7 @@
                   <h3 class="box-title">Editar Ruta Turística</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form  id="insertR" name="insertR" method="POST" enctype="multipart/form-data">
+                <form  id="insertE" name="insertE" method="POST" enctype="multipart/form-data">
                   <div class="box-body">
 
                     <div class="form-group">
@@ -36,16 +36,25 @@
                     </div>
                      <div class="form-group">
                       <label for="duracionL">Duración en el lugar</label>
+                      <div class="input-group">
                       <input type="text" class="form-control" id="duracionL" name="duracionL" placeholder="Duración en el lugar" value="{{$lugar1->duracionL}}">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-time"> Horas</i></span>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label for="tiempoU">Tiempo de llegada desde la ubicación</label>
+                      <div class="input-group">
                       <input type="text" class="form-control" id="tiempoU" name="tiempoU" placeholder="Tiempo de llegada desde la ubicación" value="{{$lugar1->tiempoU}}">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-time"> Horas</i></span>
+                      </div>
                     </div>
 
                     <div class="form-group">
                       <label for="distanciaU">Distancia desde la ubicación</label>
+                      <div class="input-group">
                       <input type="text" class="form-control" id="distanciaU" name="distanciaU" placeholder="Distancia desde la ubicación" value="{{$lugar1->distanciaU}}">
+                      <span class="input-group-addon"><i class=""> KM</i></span>
+                      </div>
                     </div>
 
                       <div class="form-group">

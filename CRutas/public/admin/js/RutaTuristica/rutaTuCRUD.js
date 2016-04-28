@@ -97,8 +97,8 @@ function editarLugar(){
     var imagen = inputFileImage.files[0];
     var id= $("#id").val();
 
-    var route =getBaseDir()+"lugarTuristico/update";
-      alert(route);
+    var route =getBaseDir()+"editarLugarTuristico";
+      
     var token = $("#token").val();
     //alert('entro aqui');
     //alert(route);
@@ -122,9 +122,11 @@ function editarLugar(){
 		        contentType: false,
 		        processData: false,
 
-				success:function(){
-
-					window.location=getBaseDir()+"lugarTuristico";
+				success:function(response){
+					alert('entro');
+					listarLugares();
+					$("#msj-su").html(response.lugar);
+					$("#msj-success").fadeIn(2000);
 					
 				},//fin succes
 

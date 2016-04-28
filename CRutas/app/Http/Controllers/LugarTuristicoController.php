@@ -115,10 +115,15 @@ class LugarTuristicoController extends Controller
     public function update(Request $request)
     {
        
-        return response()->json();
+       $nombre='Se actualizo';
+        return response()->json(['lugar'=> $nombre]);
     }
 
-  
+    public function editar(Request $request)
+    {
+        $nombre='Se actualizo';
+        return response()->json(['lugar'=> $nombre]);
+    }
 
     /**
      * Remove the specified resource from storage.
