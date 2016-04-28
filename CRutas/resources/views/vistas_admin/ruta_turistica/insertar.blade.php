@@ -1,6 +1,8 @@
 @extends('layoutAdmin.baseAdmin')
 @section('main')
 		<center>
+    <br>
+    <br>
 			 <div class="row">
             <!-- left column -->
             {{-- <div class="col-md-6" style="margin-left:25%" style="margin-rigth:25%"> --}}

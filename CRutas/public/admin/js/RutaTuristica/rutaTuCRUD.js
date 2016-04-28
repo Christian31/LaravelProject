@@ -10,6 +10,7 @@ function insertarRuta(){
     var imagen = inputFileImage.files[0];
 
     var route =getBaseDir()+"lugarTuristico";
+
     var token = $("#token").val();
     //alert(route);
     var dato= new FormData();
@@ -83,6 +84,7 @@ function listarLugares(){
 	});
 }
 
+
 function editarLugar(){
 
 	var nombre=$("#nombre").val();
@@ -96,8 +98,9 @@ function editarLugar(){
     var id= $("#id").val();
 
     var route =getBaseDir()+"lugarTuristico/update";
+      alert(route);
     var token = $("#token").val();
-    alert('entro aqui');
+    //alert('entro aqui');
     //alert(route);
     var dato= new FormData();
         dato.append('nombre',nombre);

@@ -1,5 +1,7 @@
 @extends('layoutAdmin.baseAdmin')
 @section('main')
+<br>
+<br>
 <div class="row">
           <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
           <div class="col-xs-2"></div>

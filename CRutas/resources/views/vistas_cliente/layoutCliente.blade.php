@@ -198,20 +198,6 @@ $(document).ready(function() {
 			<li id="inicio"><a href="{!!URL::to('/')!!}">INICIO</a></li>
 			<li id="nosotros"><a href="{!!URL::to('nosotros')!!}">Nosotros</a></li>
 			<li id="buscar"><a href="{!!URL::to('rutaTuristica')!!}">Buscar rutas turísticas</a></li>
-			<li><a href="portfolio.html">PORTFOLIO</a>
-			<ul class="sub-menu list-unstyled">
-				<li><a href="portfolio.html">Portfolio Page</a></li>
-				<li><a href="portfolio.html">Portfolio Page</a></li>
-				<li><a href="portfolio.html">Portfolio Page</a>
-					<ul class="list-unstyled">
-						<li><a href="portfolio.html">Sub-Menu 1</a></li>
-						<li><a href="portfolio.html">Sub-Menu 2</a></li>
-						<li><a href="portfolio.html">Sub-Menu 3</a></li>
-					</ul>
-				</li>
-			</ul>
-			</li>
-			
 		</ul>
 		</nav>
 		<script src="cliente/js/menu.js" type="text/javascript"></script>

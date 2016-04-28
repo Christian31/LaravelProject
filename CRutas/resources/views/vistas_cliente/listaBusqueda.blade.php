@@ -37,6 +37,25 @@
            <td><h5>6 horas</h5></td>
             <td><h5>60 Km</h5></td>
              <td><a href="{!!URL::to('recorridoVirtual')!!}"><h5>Ver</h5></a></td>
+
+          
+          </tr>
+           <tr>
+          
+          <td><h5>2</h5></td>
+           <td><h5>6 horas</h5></td>
+            <td><h5>52 Km</h5></td>
+             <td><a href="{!!URL::to('recorridoVirtual')!!}"><h5>Ver</h5></a></td>
+             
+          
+          </tr>
+           <tr>
+          
+          <td><h5>3</h5></td>
+           <td><h5>5 horas</h5></td>
+            <td><h5>40 Km</h5></td>
+             <td><a href="{!!URL::to('recorridoVirtual')!!}"><h5>Ver</h5></a></td>
+             
           
           </tr>
             <tbody id ="datos_busqueda">

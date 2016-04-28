@@ -28,11 +28,12 @@ Route::get('/inicioAdmin',['middleware' => 'auth',function(){
 	return view('vistas_admin.inicioAdmin');
 }]);
 
+
+
 // Lugar turistico
 Route::resource('lugarTuristico', 'LugarTuristicoController');
 Route::get('listadoLugaresTuristicos','LugarTuristicoController@listadoLugaresTuristicos');
-Route::post('lugarTuristico/update','LugarTuristicoController@update');
-
+Route::resource('lugarTuristico/update','LugarTuristicoController@update');
 //Ruta Turistica
 Route::resource('rutaTuristica', 'RutaTuristicaController');
 Route::get('recorridoVirtual', 'RutaTuristicaController@vistaDetalleRuta');
@@ -41,3 +42,4 @@ Route::get('nosotros', 'RutaTuristicaController@vistaNosotros');
 //usuario
 Route::post('iniciarSesion','UsuarioController@iniciarSesion');
 Route::get('cerrarSesion','UsuarioController@cerrarSesion');
+

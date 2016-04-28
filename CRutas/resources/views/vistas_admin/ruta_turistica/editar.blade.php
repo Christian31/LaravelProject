@@ -69,7 +69,7 @@
                   </div><!-- /.box-body -->
 
                   <div class="box-footer">
-                    <button type="submit" onclick="editarLugar" class="btn btn-primary" >Editar</button>
+                    <button type="submit" onclick="editarLugar();" class="btn btn-primary" >Editar</button>
                   </div>
                 </form>
               </div><!-- /.box -->

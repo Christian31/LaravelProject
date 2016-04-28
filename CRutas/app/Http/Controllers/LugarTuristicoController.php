@@ -13,12 +13,12 @@ class LugarTuristicoController extends Controller
 {
 
      public function __construct()
-    {
+   {
        // $this->middleware('auth');
-        if(!Session::has('success')){
-          $this->middleware('auth');
-        }
-    }
+      if(!Session::has('success')){
+        $this->middleware('auth');
+       }
+   }
     /**
      * Display a listing of the resource.
      *
@@ -114,9 +114,11 @@ class LugarTuristicoController extends Controller
      */
     public function update(Request $request)
     {
-        //
+       
         return response()->json();
     }
+
+  
 
     /**
      * Remove the specified resource from storage.
