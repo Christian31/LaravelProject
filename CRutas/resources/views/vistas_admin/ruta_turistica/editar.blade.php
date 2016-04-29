@@ -1,9 +1,13 @@
 @extends('layoutAdmin.baseAdmin')
 @section('main')
-		<center>
+		<br>
+    <br>
+    <center>
 			 <div class="row">
-            <!-- left column -->
-            <div class="col-md-12">
+         <!-- left column -->
+            {{-- <div class="col-md-6" style="margin-left:25%" style="margin-rigth:25%"> --}}
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
               <!-- general form elements -->
               <div class="box box-primary">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
@@ -19,7 +23,7 @@
                   <h3 class="box-title">Editar Ruta Turística</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form  id="insertE" name="insertE" method="POST" enctype="multipart/form-data">
+                <form  id="insertE" name="insertE" method="" enctype="multipart/form-data">
                   <div class="box-body">
 
                     <div class="form-group">
@@ -78,10 +82,12 @@
                   </div><!-- /.box-body -->
 
                   <div class="box-footer">
-                    <button type="submit" onclick="editarLugar();" class="btn btn-primary" >Editar</button>
+                    <button type="submit" onclick="" class="btn btn-primary" >Editar</button>
                   </div>
                 </form>
               </div><!-- /.box -->
+               </div><!--/.col (left) -->
+                 <div class="col-md-3"></div>
   </div>
 
 </div>
