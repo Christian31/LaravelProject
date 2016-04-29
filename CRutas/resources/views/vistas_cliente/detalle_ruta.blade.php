@@ -26,12 +26,16 @@
  <center>
  <div class="main">
     <div> <h3 style="color:#E8645A;">Africa Safari</h3>
-   <h6>  Distancia 5Km</h6>
+   <h5>  Distancia 5Km</h5>
     </div>
     <div class="slides">
-      <img src="cliente/images/africa1.jpg">
-      <img src="cliente/images/africa4.jpg">
+      <img src="cliente/images/africa9.jpg">
+     
       <img src="cliente/images/africa3.jpg">
+        <img src="cliente/images/africa5.jpg">
+      <img src="cliente/images/africa6.jpg">
+     
+       <img src="cliente/images/africa1.jpg">
     </div>
 
   </div>
@@ -39,22 +43,24 @@
   
   <div  class="main">
     <div> <h3 style="color:#E8645A;">Hidden Garden Art Gallery</h3>
-    <h6>  Distancia 15Km</h6>
+    <h5>  Distancia 15Km</h5>
     </div>
     <div class="slides">
       <img src="cliente/images/galery2.jpg">
-      <img src="cliente/images/galery1.jpg">
+      <img src="cliente/images/galery5.jpg">
       <img src="cliente/images/galery3.jpg">
+      <img src="cliente/images/galery4.jpg">
     </div>
   </div>
   <div  class="main">
    <div> <h3 style="color:#E8645A;">Pura Aventura</h3>
-   <h6>  Distancia 35Km</h6>
+   <h5>  Distancia 35Km</h5>
    </div>
    <div class="slides">
     <img src="cliente/images/aventura4.jpg">
     <img src="cliente/images/aventura5.jpg">
     <img src="cliente/images/aventura6.jpg">
+     <img src="cliente/images/aventura7.jpg">
   </div>
 </div>
 

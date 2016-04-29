@@ -15,8 +15,8 @@
 <div class="main_btm1"><!-- start main_btm -->
 <div class="container">
 	<div class="main about span_of_3">
-		<h3>There are many variations of passages of Lorem Ipsum available, </h3>
-		<p class="para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+		<h3>¡Conozca Costa Rica!</h3>
+		<p class="para">CRutas es una una web que se encarga de calcular y recomendar rutas turísticas de Costa Rica de acuerdo a las preferencias de los usuarios. CRutas le mostrará información de cada lugar turístico incluido en las rutas calculadas. Planee sus vacaciones con CRutas.</p>
 		
 		
 		
