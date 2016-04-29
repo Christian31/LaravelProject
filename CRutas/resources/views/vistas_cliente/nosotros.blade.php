@@ -14,14 +14,16 @@
 </div>
 <div class="main_btm1"><!-- start main_btm -->
 <div class="container">
+<div class="col-md-2"></div>
+<div class="col-md-8">
 	<div class="main about span_of_3">
 		<h3>¡Conozca Costa Rica!</h3>
 		<p class="para">CRutas es una una web que se encarga de calcular y recomendar rutas turísticas de Costa Rica de acuerdo a las preferencias de los usuarios. CRutas le mostrará información de cada lugar turístico incluido en las rutas calculadas. Planee sus vacaciones con CRutas.</p>
 		
+		</div>
+		</div>
 		
-		
-		
-	</div>
+	
 	
 
 </div>
