@@ -30,7 +30,7 @@ $('#buscar').addClass('activate');
   						<option>Limón, Limón</option>
   						<option>Jacó, Puntarenas</option>
 					</select>
-					<p class="help-block" style="font-size:small;">Escoja la ubicación desde donde desea iniciar la Ruta</p>
+					<p class="help-block" style="font-size:small;">Escoja la ubicación desde donde desea iniciar la Ruta.</p>
 					<br>
 					<label for="selectTiempo" class="control-label" style="font-size:large;">Tiempo de Ruta</label>
 					<select class="form-control" id="selectTiempo">
@@ -39,16 +39,33 @@ $('#buscar').addClass('activate');
   						<option>De 6 a 9 Horas</option>
   						<option>De 9 a 12 Horas</option>
 					</select>
-					<p class="help-block" style="font-size:small;">Escoja el rango de tiempo que desea que la Ruta tenga</p>
+					<p class="help-block" style="font-size:small;">Escoja el rango de tiempo que desea que la Ruta tenga.</p>
 					<br>
 					<label for="selectTiempo" class="control-label" style="font-size:large;">Distancia del punto de partida</label>
-					<select class="form-control" id="selectTiempo">
+					<select class="form-control" id="selectDistancia">
   						<option>De 1 Km a 20 Km</option>
   						<option>De 20 Km a 40 Km</option>
   						<option>De 40 Km a 60 Km</option>
   						<option>De 60 Km a 80 Km</option>
 					</select>
-					<p class="help-block" style="font-size:small;">Escoja el rango de distancia que desea que la Ruta tenga en base a la ubicación de partida</p>
+					<p class="help-block" style="font-size:small;">Escoja el rango de distancia que desea que la Ruta tenga en base a la ubicación de partida.</p>
+					<br>
+					<label for="selectPrecio" class="control-label" style="font-size:large;">Precio</label>
+					<select class="form-control" id="selectPrecio">
+  						<option>De 0$ a 50$</option>
+  						<option>De 50$ a 100$</option>
+  						<option>De 100$ o más</option>
+					</select>
+					<p class="help-block" style="font-size:small;">Escoja el rango de precio que desea que tengas los lugares turísticos</p>
+					<br>
+					<label for="selectTiempo" class="control-label" style="font-size:large;">Tipo de lugar turístico.</label>
+					<select class="form-control" id="selectTipo">
+  						<option>Aventura</option>
+  						<option>Playa</option>
+  						<option>Cultural</option>
+  						<option>Ecológico</option>
+					</select>
+					<p class="help-block" style="font-size:small;">Escoja el tipo de lugar turístico de su preferencia.</p>
 					<br><br>
 					<div class="col-md-4"></div>
 					<div class="col-md-4">

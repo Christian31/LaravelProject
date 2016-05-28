@@ -19,7 +19,7 @@
 	<div class="main about span_of_3">
 		<h3>¡Conozca Costa Rica!</h3>
 		<p class="para">CRutas es una una web que se encarga de calcular y recomendar rutas turísticas de Costa Rica de acuerdo a las preferencias de los usuarios. CRutas le mostrará información de cada lugar turístico incluido en las rutas calculadas. Planee sus vacaciones con CRutas.</p>
-		<p class="para">Realizado por Steven Fonseca-Marcela Duran-Christian Delgado</p>
+		<p class="para">Realizado por Christian Delgado, Marcela Durán y Steven Fonseca.</p>
 		</div>
 		</div>
 		

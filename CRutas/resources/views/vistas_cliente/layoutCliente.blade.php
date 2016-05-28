@@ -197,7 +197,7 @@ $(document).ready(function() {
 		<ul class="menu list-unstyled">
 			<li id="inicio"><a href="{!!URL::to('/')!!}">INICIO</a></li>
 			<li id="nosotros"><a href="{!!URL::to('nosotros')!!}">Acerca De</a></li>
-			<li id="buscar"><a href="{!!URL::to('rutaTuristica')!!}">Buscar rutas turísticas</a></li>
+			<!--<li id="buscar"><a href="{!!URL::to('rutaTuristica')!!}">Buscar rutas turísticas</a></li>-->
 		</ul>
 		</nav>
 		<script src="cliente/js/menu.js" type="text/javascript"></script>
@@ -210,9 +210,11 @@ $(document).ready(function() {
    @yield('contenido') 
 
 
-</div>
-@yield('contenido2')
 
+</div>
+
+@yield('contenido2')
+ @yield('video') 
 <div class="footer_bg"><!-- start footer -->
 <div class="container">
 	<div class="footer">
