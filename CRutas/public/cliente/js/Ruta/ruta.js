@@ -31,7 +31,7 @@ function buscarRutas(){
 
 function iniciarMapa(){
 
-
+var prueba={lat: 10.624611, lng: -85.533965};
   var puntoPartida = {lat:  10.633928, lng: -85.440718};
   var puntoFinal = {lat: 10.226087, lng: -85.747371};
 
@@ -43,6 +43,24 @@ function iniciarMapa(){
   scrollwheel: false,
   zoom: 7
 });
+//MARKER
+
+/* var contentString = '<h1>Hola</h1>'
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+  var marker = new google.maps.Marker({
+    position: prueba,
+    map: map,
+    title: 'Prueba'
+  });
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });*/
+
+//MARKER
   var directionsDisplay = new google.maps.DirectionsRenderer({
     map: map
   });

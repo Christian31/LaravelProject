@@ -7,6 +7,7 @@
 <script type="text/javascript" src="cliente/js/jquery.slides.js"></script>
 
 <script src="http://maps.googleapis.com/maps/api/js?v3"></script>
+
 <div class="main_bg"><!-- start main -->
   <div class="container">
     <div class="main_grid1">
