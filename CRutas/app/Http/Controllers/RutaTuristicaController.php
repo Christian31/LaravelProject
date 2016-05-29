@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Ubicacion;
+use App\LugarTuristico;
 
 class RutaTuristicaController extends Controller
 {
@@ -31,30 +31,26 @@ class RutaTuristicaController extends Controller
        $tiempo = $_POST['tiempo'];
        $precio= $_POST['precio'];
        $tipo_lugar=  $_POST['tipo'];
-     
+       $lugares= $this->buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar);
+        return response()->json(['mensaje'=>  count($lugares)]);
+    }
+
+    private function buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar){
+       $lugares=LugarTuristico::all();
      /////EUCLIDES
-/*$suma=0;
- $distanciaMenor = 0;
- $entrada = false;
- 
- foreach ($datos as $fila){
-   $suma = levenshtein($estilo, $fila->estilo)+abs($promedio-$fila->promedio)+levenshtein($recinto, $fila->recinto);
-  if($entrada==false){
-   $distanciaMenor = $suma;
-    $sexo = $fila->sexo; 
-   $entrada= true;  
-  }else if($distanciaMenor>$suma){ 
-   $distanciaMenor= $suma; 
-  $sexo = $fila->sexo; 
- }
-  }*/
+       $suma=0;
+       $arreglo_lugares = array();
+       foreach ($lugares as $fila){
+        $suma = abs($ubicacion-$fila->fk_id_ubicacion)+abs($precio-$fila->precio_lugar_turistico)+abs($tipo_lugar-$fila->tipo_atractivo_lugar_turistico);
+        if($suma==0){
+            array_push($arreglo_lugares, $fila);
+        }
+  }//fin for
        ///EUCLIDES
 
 
-
-        return response()->json(['mensaje'=>$ubicacion]);
-
-    }
+  return $arreglo_lugares;
+}
 
     /**
      * Show the form for creating a new resource.

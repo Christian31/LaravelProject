@@ -23,7 +23,7 @@
 <div class="col-md-2"></div>
 <div class="col-md-8">
 <div class="table-responsive">
-
+  
   <table class="table table-bordered">
       <thead>
               <tr bgcolor="#76C7C0">
@@ -33,6 +33,7 @@
                 <th><h4 align="center">Recorrido virtual</h4></th>
             </tr>
           </thead>
+
           <tr>
           
           <td><h5>1</h5></td>
