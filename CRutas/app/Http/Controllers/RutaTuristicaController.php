@@ -33,7 +33,7 @@ class RutaTuristicaController extends Controller
        $tipo_lugar=  $_POST['tipo'];
      
      /////EUCLIDES
-$suma=0;
+/*$suma=0;
  $distanciaMenor = 0;
  $entrada = false;
  
@@ -47,7 +47,7 @@ $suma=0;
    $distanciaMenor= $suma; 
   $sexo = $fila->sexo; 
  }
-  }
+  }*/
        ///EUCLIDES
 
 
