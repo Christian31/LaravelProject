@@ -25,6 +25,37 @@ class RutaTuristicaController extends Controller
          return view('vistas_cliente.nosotros'); 
     }
 
+    public function buscarRutas(Request $request){
+       $ubicacion= $_POST['ubicacion'];
+       $distancia= $_POST['distancia'];
+       $tiempo = $_POST['tiempo'];
+       $precio= $_POST['precio'];
+       $tipo_lugar=  $_POST['tipo'];
+     
+     /////EUCLIDES
+$suma=0;
+ $distanciaMenor = 0;
+ $entrada = false;
+ 
+ foreach ($datos as $fila){
+   $suma = levenshtein($estilo, $fila->estilo)+abs($promedio-$fila->promedio)+levenshtein($recinto, $fila->recinto);
+  if($entrada==false){
+   $distanciaMenor = $suma;
+    $sexo = $fila->sexo; 
+   $entrada= true;  
+  }else if($distanciaMenor>$suma){ 
+   $distanciaMenor= $suma; 
+  $sexo = $fila->sexo; 
+ }
+  }
+       ///EUCLIDES
+
+
+
+        return response()->json(['mensaje'=>$ubicacion]);
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *

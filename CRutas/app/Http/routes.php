@@ -39,6 +39,7 @@ Route::post('editarLugarTuristico','LugarTuristicoController@editar');
 Route::resource('rutaTuristica', 'RutaTuristicaController');
 Route::get('recorridoVirtual', 'RutaTuristicaController@vistaDetalleRuta');
 Route::get('nosotros', 'RutaTuristicaController@vistaNosotros');
+Route::post('buscarRutas', 'RutaTuristicaController@buscarRutas');
 
 //usuario
 Route::post('iniciarSesion','UsuarioController@iniciarSesion');

@@ -23,50 +23,60 @@
 @endsection
 @section('contenido2')
 <div class="container">
- <center>
- <div class="main">
-    <div> <h3 style="color:#E8645A;">Africa Safari</h3>
-   <h5>  Distancia 5Km</h5>
-    </div>
-    <div class="slides">
-      <img src="cliente/images/africa9.jpg">
-     
-      <img src="cliente/images/africa3.jpg">
-        <img src="cliente/images/africa5.jpg">
-      <img src="cliente/images/africa6.jpg">
-     
-       <img src="cliente/images/africa1.jpg">
-    </div>
+<br>
+<br>
+<br>
 
+<div   id="mapa" style="width: 550px; height: 500px; float:left;"> </div>
+
+
+ <!--<center>-->
+
+ <div style="float:left; margin-left: 80px">
+   <div>
+     <h3 style="color:#E8645A;">Africa Safari</h3>
+     <h5>  Distancia 5Km</h5>
+     <div style="width: 440px"  class="slides">
+
+      <img src="cliente/images/africa9.jpg">
+
+      <img src="cliente/images/africa3.jpg">
+      <img src="cliente/images/africa5.jpg">
+      <img src="cliente/images/africa6.jpg">
+
+      <img src="cliente/images/africa1.jpg">
+    </div>
   </div>
-   
-  
-  <div  class="main">
-    <div> <h3 style="color:#E8645A;">Hidden Garden Art Gallery</h3>
+  <div>
+    <h3 style="color:#E8645A;">Hidden Garden Art Gallery</h3>
     <h5>  Distancia 15Km</h5>
-    </div>
-    <div class="slides">
-      <img src="cliente/images/galery2.jpg">
-      <img src="cliente/images/galery5.jpg">
-      <img src="cliente/images/galery3.jpg">
-      <img src="cliente/images/galery4.jpg">
-    </div>
+ 
+  <div style="width: 440px"  class="slides">
+    <img src="cliente/images/galery2.jpg">
+    <img src="cliente/images/galery5.jpg">
+    <img src="cliente/images/galery3.jpg">
+    <img src="cliente/images/galery4.jpg">
   </div>
-  <div  class="main">
-   <div> <h3 style="color:#E8645A;">Pura Aventura</h3>
-   <h5>  Distancia 35Km</h5>
-   </div>
-   <div class="slides">
+ </div>
+<div>
+  <h3 style="color:#E8645A;">Pura Aventura</h3>
+  <h5>  Distancia 35Km</h5>
+  <div style="width: 440px"  class="slides">
     <img src="cliente/images/aventura4.jpg">
     <img src="cliente/images/aventura5.jpg">
     <img src="cliente/images/aventura6.jpg">
      <img src="cliente/images/aventura7.jpg">
   </div>
 </div>
+<div>
 
-<div id="mapa" style="width: 1000px; height: 500px;"> </div>
+
+</div>
+
+</div>
+</div>
 <br>
-</center>
+<!--</center>-->
 </div>
 <script>
   $(function(){

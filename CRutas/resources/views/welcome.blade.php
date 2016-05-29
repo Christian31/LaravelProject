@@ -84,65 +84,68 @@ $('#inicio').addClass('activate');
 @section('contenido2')
 <div class="container">
     <div class="contact"> 
+    <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <div class="contact-form">
-                <form method="GET" action="{!!URL::to('/resultados')!!}"> 
+          <!--  <div class="contact-form">-->
+              <!--  <form method="GET" action="{!!URL::to('/resultados')!!}"> -->
+
                     <label for="selectUbicacion" class="control-label" style="font-size:large;">Ubicación</label>
                     <select class="form-control" id="selectUbicacion">
-                        <option>Liberia, Guanacaste</option>
-                        <option>San Carlos, Alajuela</option>
-                        <option>Paraíso, Cartago</option>
-                        <option>Limón, Limón</option>
-                        <option>Jacó, Puntarenas</option>
+                        <option value="1">Liberia, Guanacaste</option>
+                        <option value="2">San Carlos, Alajuela</option>
+                        <option value="3">Paraíso, Cartago</option>
+                        <option value="4">Limón, Limón</option>
+                        <option value="5">Jacó, Puntarenas</option>
                     </select>
                     <p class="help-block" style="font-size:small;">Seleccione la ubicación donde desea iniciar la ruta.</p>
                     <br>
                     <label for="selectTiempo" class="control-label" style="font-size:large;">Tiempo de Ruta</label>
                     <select class="form-control" id="selectTiempo">
-                        <option>De 1 a 3 Horas</option>
-                        <option>De 3 a 6 Horas</option>
-                        <option>De 6 a 9 Horas</option>
-                        <option>De 9 a 12 Horas</option>
+                        <option value="">De 1 a 3 Horas</option>
+                        <option value="">De 3 a 6 Horas</option>
+                        <option value="">De 6 a 9 Horas</option>
+                        <option value="">De 9 a 12 Horas</option>
                     </select>
                     <p class="help-block" style="font-size:small;">Seleccione el rango de tiempo que desea para la ruta.</p>
                     <br>
                     <label for="selectTiempo" class="control-label" style="font-size:large;">Distancia del punto de partida</label>
                     <select class="form-control" id="selectDistancia">
-                        <option>De 1 Km a 20 Km</option>
-                        <option>De 20 Km a 40 Km</option>
-                        <option>De 40 Km a 60 Km</option>
-                        <option>De 60 Km a 80 Km</option>
+                        <option value="">De 1 Km a 20 Km</option>
+                        <option value="">De 20 Km a 40 Km</option>
+                        <option value="">De 40 Km a 60 Km</option>
+                        <option value="">De 60 Km a 80 Km</option>
                     </select>
                     <p class="help-block" style="font-size:small;">Seleccione el rango de distancia que desea para la ruta en base a la ubicación de partida.</p>
                     <br>
                     <label for="selectPrecio" class="control-label" style="font-size:large;">Precio</label>
                     <select class="form-control" id="selectPrecio">
-                        <option>De 0$ a 50$</option>
-                        <option>De 50$ a 100$</option>
-                        <option>De 100$ o más</option>
+                        <option value="">De 0$ a 50$</option>
+                        <option value="">De 50$ a 100$</option>
+                        <option value="">De 100$ o más</option>
                     </select>
                     <p class="help-block" style="font-size:small;">Seleccione el rango de precio que desea para los lugares turísticos</p>
                     <br>
                     <label for="selectTiempo" class="control-label" style="font-size:large;">Tipo de lugar turístico</label>
                     <select class="form-control" id="selectTipo">
-                        <option>Aventura</option>
-                        <option>Playa</option>
-                        <option>Cultural</option>
-                        <option>Ecológico</option>
+                        <option value="">Aventura</option>
+                        <option value="">Playa</option>
+                        <option value="">Cultural</option>
+                        <option value="">Ecológico</option>
                     </select>
                     <p class="help-block" style="font-size:small;">Seleccione el tipo de lugar turístico de su preferencia.</p>
-                    <br><br>
+                    
                     <div class="col-md-12"></div>
                    
-                        <span><input type="submit" value="Buscar"></span>
+                        <span><input  class="btn btn-default" onclick="buscarRutas();" type="submit" value="Buscar"></span>
                         <br><br>
                  
-                </form>
-            </div>
+             
+          <!--  </div>-->
         </div>
     </div>
 </div>
+
 @endsection
 
 @section('video')
@@ -165,4 +168,7 @@ $('#inicio').addClass('activate');
 
 </div>
 <br>
+@endsection
+@section('scripts')
+{!!Html::script('cliente/js/Ruta/ruta.js')!!}
 @endsection

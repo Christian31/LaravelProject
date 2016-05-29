@@ -32,6 +32,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="cliente/js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
 <script src="cliente/js/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
 <script src="cliente/js/allinone_carousel.js" type="text/javascript"></script>
+<script src="cliente/js/route.js" type="text/javascript"></script>
+ @yield('scripts') 
 <!--[if IE]><script src="js/excanvas.compiled.js" type="text/javascript"></script><![endif]-->
 <!-- must have -->
 	<!--<script>
