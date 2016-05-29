@@ -137,7 +137,7 @@ $('#inicio').addClass('activate');
                     
                     <div class="col-md-12"></div>
                    
-                        <span><input  class="btn btn-default" onclick="buscarRutas();" type="submit" value="Buscar"></span>
+                        <span><input style="background-color: #62A29E"  class="btn btn-primary" onclick="buscarRutas();" type="submit" value="Buscar"></span>
                         <br><br>
                  
              
