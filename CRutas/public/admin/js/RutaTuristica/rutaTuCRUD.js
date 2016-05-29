@@ -6,6 +6,8 @@ function insertarRuta(){
 	var tiempoU=$("#tiempoU").val();
 	var distanciaU=$("#distanciaU").val();
 	var ubicacion=$("#ubicacion").val();
+	var precio=$("#precio").val();
+	var tipo=$("#tipo").val();
 	var inputFileImage = document.getElementById("imagen");
     var imagen = inputFileImage.files[0];
 
@@ -21,11 +23,13 @@ function insertarRuta(){
         dato.append('distanciaU',distanciaU);
         dato.append('ubicacion',ubicacion);
         dato.append('imagen',imagen);
-
+        dato.append('precio',precio);
+        dato.append('tipo',tipo);
+		//alert("hola");
         $.ajax({
 				url: route,
 				headers: {'X-CSRF-TOKEN': token},//Al X-CSRF-TOKEN se le envia la variable token
-				type: 'POST',
+				method: 'POST',
 				dataType: 'json',
 				data: dato,
 		        cache: false,

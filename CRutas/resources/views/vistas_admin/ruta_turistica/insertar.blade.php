@@ -24,6 +24,7 @@
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form  id="insertR" name="insertR" method="POST" enctype="multipart/form-data">
+
                   <div class="box-body">
                     <div class="form-group">
                       <label for="nombre">Nombre</label>
@@ -64,10 +65,20 @@
                      	<select id="selectError" data-rel="chosen" name="ubicación">
                              @foreach ($ubicaciones as $ubicacion)
                              
-                            <option value="{{ $ubicacion->id }}">{{ $ubicacion->nombre }}</option>
+                            <option value="{{ $ubicacion->id_ubicacion }}">{{ $ubicacion->nombre_ubicacion }}</option>
                            
                              @endforeach
                         </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nombre">Precio</label>
+                      <input type="text" class="form-control" id="precio" name="precio" placeholder="Precio">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nombre">Tipo atractivo</label>
+                      <input type="text" class="form-control" id="tipo" name="tipo" placeholder="Tipo atractivo">
                     </div>
 
 
