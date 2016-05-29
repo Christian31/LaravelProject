@@ -174,6 +174,7 @@
     {!!Html::script('admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')!!}
     <!-- jQuery Knob Chart -->
     {!!Html::script('admin/plugins/knob/jquery.knob.js')!!}
+    {!!Html::script('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js')!!}
     <!-- daterangepicker -->
     {!!Html::script('admin/plugins/daterangepicker/daterangepicker.js')!!}
     <!-- datepicker -->

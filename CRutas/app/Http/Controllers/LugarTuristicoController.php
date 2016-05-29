@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+
 use App\Ubicacion;
 use App\LugarTuristico;
+use App\ImagenLugarTuristico;
 
 use Session;
 class LugarTuristicoController extends Controller
@@ -62,35 +64,33 @@ class LugarTuristicoController extends Controller
         $lugar->tiempo_llegada_ubicacion=$_POST['tiempoU'];
         $lugar->distancia_ubicacion=$_POST['distanciaU'];
         $lugar->precio_lugar_turistico=$_POST['precio'];
-        $lugar->tipo_atractivo_lugar_turisitico=$_POST['tipo'];
+        $lugar->tipo_atractivo_lugar_turistico=$_POST['tipo'];
+        $lugar->latitud=$_POST['latitud'];
+        $lugar->longitud=$_POST['longitud'];
 
+        //$imagen->$request['imagen'];
         //var_dump($lugar);
-
+       
         $lugar->save();
+        $destinationPath =  public_path('imagenes/');
 
+        foreach ($_FILES as $key) //Iteramos el arreglo de archivos
+        {
+              
+              $imagenLugar=new ImagenLugarTuristico;
+              $nombreImagen=$key["name"];
+              
+              $fileName = $destinationPath.$nombreImagen; // renameing image
+              move_uploaded_file($key["tmp_name"], $fileName);
+              $imagenLugar->ruta_imagen= $fileName;
+              $imagenLugar->fk_id_lugar_turistico= $lugar->id_lugar_turistico;
+              $imagenLugar->save();
+        }
+       
 
         return response()->json(['lugar'=>  $lugar->nombre_lugar_turistico]);;
     }
-      public function insertar(Request $request)
-    {
-        //
-        $lugar=new LugarTuristico;
-        $lugar->nombre_lugar_turistico=$_POST['nombre'];
-        $lugar->fk_id_ubicacion=$_POST['ubicacion'];
-        $lugar->descripcion_lugar_turistico=$_POST['descripcion'];
-        $lugar->tiempo_estancia_lugar_turistico=$_POST['duracionL'];
-        $lugar->tiempo_llegada_ubicacion=$_POST['tiempoU'];
-        $lugar->distancia_ubicacion=$_POST['distanciaU'];
-        $lugar->precio_lugar_turistico=$_POST['precio'];
-        $lugar->tipo_atractivo_lugar_turisitico=$_POST['tipo'];
-
-        //var_dump($lugar);
-
-        $lugar->save();
-
-
-        return response()->json(['lugar'=>  $lugar->nombre_lugar_turistico]);;
-    }
+     
     /**
      * Display the specified resource.
      *
@@ -161,6 +161,7 @@ class LugarTuristicoController extends Controller
     public function destroy($id)
     {
         //
+        LugarTuristico::destroy($id);
         return response()->json();
     }
 
@@ -173,28 +174,13 @@ class LugarTuristicoController extends Controller
 
     public function listadoLugaresTuristicos()
     {
-        $lugar1=new LugarTuristico;
-        $lugar1->id=1;
-        $lugar1->nombre="Mirador de orosí";
-        $lugar1->ubicacion="Paraiso,Cartago";
+       
 
-        $lugar2=new LugarTuristico;
-        $lugar2->id=2;
-        $lugar2->nombre="Africa mía";
-        $lugar2->ubicacion="Libería,Guanacaste";
-
-        $lugar3=new LugarTuristico;
-        $lugar3->id=3;
-        $lugar3->nombre="Playas del coco";
-        $lugar3->ubicacion="Libería,Guanacaste";
-
-        $lugares=array();
-        array_push($lugares, $lugar1);
-        array_push($lugares, $lugar2);
-        array_push($lugares, $lugar3);
+        $lugares=LugarTuristico::all();
+        
 
          return response()->json(
        // $lugares->toArray(), 200, array(),  JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
-        $lugares, 200, array(),  JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
+        $lugares->toArray(), 200, array(),  JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 }

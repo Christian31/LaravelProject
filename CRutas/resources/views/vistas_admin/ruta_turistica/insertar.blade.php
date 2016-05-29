@@ -10,7 +10,7 @@
             <div class="col-md-6">
               <!-- general form elements -->
               <div class="box box-primary">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+                
                 <div id="msj-success" class="alert alert-success alert-dismissible" role="alert" style="
                     display:none">
                   <strong id="msj-su"></strong>
@@ -23,8 +23,10 @@
                   <h3 class="box-title">Insertar Ruta Turística</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form  id="insertR" name="insertR" method="POST" enctype="multipart/form-data">
-
+                
+                  {{-- {!!Form::open()!!} --}}
+                  {{-- <input type="hidden" name="_token" value={{ csrf_token()}} id="token"> --}}
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="nombre">Nombre</label>
@@ -60,9 +62,19 @@
                       </div>
                     </div>
 
+                     <div class="form-group">
+                      <label for="latitud">Latitud</label>
+                      <input type="text" class="form-control" id="latitud" name="latitud" placeholder="Latitud">
+                    </div>
+                     <div class="form-group">
+                      <label for="longitud">Longitud</label>
+                      <input type="text" class="form-control" id="longitud" name="longitud" placeholder="Longitud">
+                    </div>
+                   
+
                       <div class="form-group">
                       <label for="ubicacion">Ubicación</label>
-                     	<select id="selectError" data-rel="chosen" name="ubicación">
+                     	<select id="ubicacion" data-rel="chosen" name="ubicacion">
                              @foreach ($ubicaciones as $ubicacion)
                              
                             <option value="{{ $ubicacion->id_ubicacion }}">{{ $ubicacion->nombre_ubicacion }}</option>
@@ -70,21 +82,34 @@
                              @endforeach
                         </select>
                     </div>
-
-                    <div class="form-group">
-                      <label for="nombre">Precio</label>
-                      <input type="text" class="form-control" id="precio" name="precio" placeholder="Precio">
+                       <div class="form-group">
+                      <label for="precio">Precio</label>
+                      <select id="precio" data-rel="chosen" name="precio">
+                             
+                            <option value="1">De $0 a $50</option>
+                           <option value="2">De $50 a $100</option>
+                           <option value="3">De $100 a más</option>
+                            
+                        </select>
+                    </div>
+                      <div class="form-group">
+                      <label for="tipo">Tipo Atractivo</label>
+                      <select id="tipo" data-rel="chosen" name="precio">
+                             
+                            <option value="1">Aventura</option>
+                           <option value="2">Playa</option>
+                           <option value="3">Cultural</option>
+                           <option value="4">Ecológico</option>
+                            
+                        </select>
                     </div>
 
-                    <div class="form-group">
-                      <label for="nombre">Tipo atractivo</label>
-                      <input type="text" class="form-control" id="tipo" name="tipo" placeholder="Tipo atractivo">
-                    </div>
+                    
 
 
                     <div class="form-group">
                       <label for="imagen">Seleccionar las imagenes</label>
-                      <input required type="file" id="imagen" name="imagen" multiple accept="image/*">
+                      <input required type="file" id="imagen" name="imagen[]" multiple accept="image/*">
                       
                     </div>
                     
@@ -93,7 +118,7 @@
                   <div class="box-footer">
                     <button type="submit" onclick="insertarRuta();" class="btn btn-primary">Insertar</button>
                   </div>
-                </form>
+                {{ Form::close()}}
               </div><!-- /.box -->
               </div><!--/.col (left) -->
               <div class="col-md-3"></div>

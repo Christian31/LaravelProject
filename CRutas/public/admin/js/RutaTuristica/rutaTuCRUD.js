@@ -9,27 +9,34 @@ function insertarRuta(){
 	var precio=$("#precio").val();
 	var tipo=$("#tipo").val();
 	var inputFileImage = document.getElementById("imagen");
-    var imagen = inputFileImage.files[0];
-
+    var imagen = inputFileImage.files;
+    var latitud=$("#latitud").val();
+    var longitud=$("#longitud").val();
     var route =getBaseDir()+"lugarTuristico";
 
+
     var token = $("#token").val();
-    //alert(route);
+    //alert(imagen.length);
     var dato= new FormData();
+    for(i=0; i<imagen.length; i++){
+	  dato.append('imagen'+i,imagen[i]); //Añadimos cada archivo a el arreglo con un indice direfente
+		}
         dato.append('nombre',nombre);
         dato.append('descripcion',descripcion);
         dato.append('duracionL',duracionL);
         dato.append('tiempoU',tiempoU);
         dato.append('distanciaU',distanciaU);
         dato.append('ubicacion',ubicacion);
-        dato.append('imagen',imagen);
+        //o.append('imagen',imagen);
         dato.append('precio',precio);
         dato.append('tipo',tipo);
+        dato.append('latitud',latitud);
+        dato.append('longitud',longitud);
 		//alert("hola");
         $.ajax({
 				url: route,
 				headers: {'X-CSRF-TOKEN': token},//Al X-CSRF-TOKEN se le envia la variable token
-				method: 'POST',
+				type: 'POST',
 				dataType: 'json',
 				data: dato,
 		        cache: false,
@@ -70,11 +77,11 @@ function listarLugares(){
 			//Mediante apend se van agregando las filas
 			tablaDatos.append(
 				"<tr>"+
-				"<td>"+value.id+"</td>"+
-				"<td>"+value.nombre+"</td>"+
-				"<td>"+value.ubicacion+"</td>"+
-				"<td><a href="+routeEdit+value.id+"/edit"+"><img class='iq-boton-editar'/></a></td>"+
-				"<td><img class='iq-boton-eliminar' OnClick='eliminarLugar("+value.id+");'/></td>"+
+				"<td>"+value.id_lugar_turistico+"</td>"+
+				"<td>"+value.nombre_lugar_turistico+"</td>"+
+				"<td>"+value.descripcion_lugar_turistico+"</td>"+
+				"<td><a href="+routeEdit+value.id_lugar_turistico+"/edit"+"><img class='iq-boton-editar'/></a></td>"+
+				"<td><img class='iq-boton-eliminar' OnClick='eliminarLugar("+value.id_lugar_turistico+");'/></td>"+
 				"</tr>"
 			);
 		});
@@ -159,7 +166,13 @@ function eliminarLugar(id){
 					$("#msj-success").fadeIn(2000);
 					$("#msj-success").fadeOut(2000);
 					listarLugares();
-				}
+				},//fin succes
+
+				error:function(){
+					$("#msj-error").fadeIn(2000);
+					
+					
+				}//fin error
 			});//fin ajax
 		
     

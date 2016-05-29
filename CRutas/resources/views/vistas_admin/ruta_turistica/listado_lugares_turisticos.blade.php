@@ -23,7 +23,7 @@
                 <tr>
                   <th>Id</th>
                   <th>Nombre</th>
-                  <th>Ubicación</th>
+                  <th>Descripción</th>
                   <th class="sorting_asc_disabled">Editar</th>
                   <th class="sorting_asc_disabled">Eliminar</th>
                     </tr>
