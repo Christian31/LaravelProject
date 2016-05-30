@@ -161,8 +161,19 @@ class LugarTuristicoController extends Controller
     public function destroy($id)
     {
         //
+        $this->eliminarImagenes($id);
         LugarTuristico::destroy($id);
         return response()->json();
+    }
+
+    public function eliminarImagenes($id)
+    {
+        $imagenes=ImagenLugarTuristico::where('fk_id_lugar_turistico','=',$id)->get();
+        //var_dump($imagenes);
+        foreach ($imagenes as $imagen) {
+            unlink($imagen->ruta_imagen);
+            $imagen->delete();
+        }
     }
 
     public function insertarLugar(Request $request)

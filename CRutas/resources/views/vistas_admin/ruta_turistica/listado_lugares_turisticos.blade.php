@@ -9,7 +9,7 @@
 
            <div id="msj-success" class="alert alert-success alert-dismissible" role="alert" style="
            display:none">
-           <strong>Categoría eliminada correctamente.</strong>
+           <strong>Lugar turistico eliminado correctamente.</strong>
          </div>
 
          <div class="box">
