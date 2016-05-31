@@ -72,7 +72,7 @@ class LugarTuristicoController extends Controller
         //var_dump($lugar);
        
         $lugar->save();
-        $destinationPath =  public_path('imagenes/');
+        //$destinationPath =  public_path();
 
         foreach ($_FILES as $key) //Iteramos el arreglo de archivos
         {
@@ -80,9 +80,10 @@ class LugarTuristicoController extends Controller
               $imagenLugar=new ImagenLugarTuristico;
               $nombreImagen=$key["name"];
               
-              $fileName = $destinationPath.$nombreImagen; // renameing image
-              move_uploaded_file($key["tmp_name"], $fileName);
-              $imagenLugar->ruta_imagen= $fileName;
+              //$fileName = $destinationPath.$nombreImagen; // renameing image
+              //move_uploaded_file($key["tmp_name"], $fileName);
+              \Storage::disk('local')->put($nombreImagen, \File::get($key["tmp_name"]));
+              $imagenLugar->ruta_imagen= $nombreImagen;
               $imagenLugar->fk_id_lugar_turistico= $lugar->id_lugar_turistico;
               $imagenLugar->save();
         }
@@ -156,9 +157,9 @@ class LugarTuristicoController extends Controller
               $imagenLugar=new ImagenLugarTuristico;
               $nombreImagen=$key["name"];
               
-              $fileName = $destinationPath.$nombreImagen; // renameing image
-              move_uploaded_file($key["tmp_name"], $fileName);
-              $imagenLugar->ruta_imagen= $fileName;
+             \Storage::disk('local')->put($nombreImagen, \File::get($key["tmp_name"]));
+              $imagenLugar->ruta_imagen= $nombreImagen;
+              
               $imagenLugar->fk_id_lugar_turistico= $lugar->id_lugar_turistico;
               $imagenLugar->save();
               $bandera=2;
@@ -184,8 +185,11 @@ class LugarTuristicoController extends Controller
     {
         $imagenes=ImagenLugarTuristico::where('fk_id_lugar_turistico','=',$id)->get();
         //var_dump($imagenes);
+        //$destinationPath =  public_path();
         foreach ($imagenes as $imagen) {
-            unlink($imagen->ruta_imagen);
+            //$ruta=$destinationPath.'\\'.$imagen->ruta_imagen;
+             \Storage::disk('local')->delete($imagen->ruta_imagen);
+            //unlink($ruta);
             $imagen->delete();
         }
     }
