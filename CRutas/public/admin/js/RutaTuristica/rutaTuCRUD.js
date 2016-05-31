@@ -104,25 +104,36 @@ function editarLugar(){
 	var tiempoU=$("#tiempoU").val();
 	var distanciaU=$("#distanciaU").val();
 	var ubicacion=$("#ubicacion").val();
+	var precio=$("#precio").val();
+	var tipo=$("#tipo").val();
 	var inputFileImage = document.getElementById("imagen");
-    var imagen = inputFileImage.files[0];
+    var imagen = inputFileImage.files;
+    var latitud=$("#latitud").val();
+    var longitud=$("#longitud").val();
+    var route =getBaseDir()+"editarLugarTuristico";
     var id= $("#id").val();
 
-    var route =getBaseDir()+"editarLugarTuristico";
+   // var route =getBaseDir()+"editarLugarTuristico";
       
     var token = $("#token").val();
     //alert('entro aqui');
-    //alert(route);
+   // alert(id);
     var dato= new FormData();
+    for(i=0; i<imagen.length; i++){
+	  dato.append('imagen'+i,imagen[i]); //Añadimos cada archivo a el arreglo con un indice direfente
+		}
         dato.append('nombre',nombre);
         dato.append('descripcion',descripcion);
         dato.append('duracionL',duracionL);
         dato.append('tiempoU',tiempoU);
         dato.append('distanciaU',distanciaU);
         dato.append('ubicacion',ubicacion);
-        dato.append('imagen',imagen);
-        dato.appaned('id',id);
-
+        dato.append('id',id);
+        dato.append('precio',precio);
+        dato.append('tipo',tipo);
+        dato.append('latitud',latitud);
+        dato.append('longitud',longitud);
+     //alert(id);
         $.ajax({
 				url: route,
 				headers: {'X-CSRF-TOKEN': token},//Al X-CSRF-TOKEN se le envia la variable token
@@ -134,8 +145,8 @@ function editarLugar(){
 		        processData: false,
 
 				success:function(response){
-					alert('entro');
-					listarLugares();
+					//alert('entro');
+					window.location=getBaseDir()+"lugarTuristico";
 					$("#msj-su").html(response.lugar);
 					$("#msj-success").fadeIn(2000);
 					

@@ -33,8 +33,8 @@ Route::get('/inicioAdmin',function(){
 // Lugar turistico
 Route::resource('lugarTuristico', 'LugarTuristicoController');
 Route::get('listadoLugaresTuristicos','LugarTuristicoController@listadoLugaresTuristicos');
+//Route::post'lugarTuristico/update','LugarTuristicoController@update');
 
-Route::patch('lugarTuristico/update','LugarTuristicoController@update');
 Route::post('editarLugarTuristico','LugarTuristicoController@editar');
 //Ruta Turistica
 Route::resource('rutaTuristica', 'RutaTuristicaController');

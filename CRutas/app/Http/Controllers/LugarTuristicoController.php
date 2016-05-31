@@ -111,23 +111,10 @@ class LugarTuristicoController extends Controller
     public function edit($id)
     {
         //
-         $lugar1=new LugarTuristico;
-        $lugar1->id=1;
-        $lugar1->nombre="Mirador de orosí";
-        $lugar1->descripcion="lugar con muchos arboles";
-        $lugar1->tiempoU=0.30;
-        $lugar1->distanciaU=2;
-        $lugar1->duracionL=3;
 
-        $ubicacion1=new Ubicacion;
-        $ubicacion1->id=1;
-        $ubicacion1->nombre='Paraíso,Cartago';
-        $ubicacion2=new Ubicacion;
-        $ubicacion2->id=2;
-        $ubicacion2->nombre='Liberia,Guanacaste';
-        $ubicaciones=array();
-        array_push($ubicaciones, $ubicacion1);
-        array_push($ubicaciones, $ubicacion2);
+         $lugar1= LugarTuristico::find($id);
+         $ubicaciones=Ubicacion::all();
+        
 
         return view('vistas_admin.ruta_turistica.editar',compact('ubicaciones','lugar1'));
     }
@@ -142,14 +129,41 @@ class LugarTuristicoController extends Controller
     public function update(Request $request)
     {
        
-       $nombre='Se actualizo';
-        return response()->json(['lugar'=> $nombre]);
+      // $nombre='Se actualizo';
+       // echo "string";
+        $id=$request->get('id');
+         echo $id;
+        $lugar= LugarTuristico::find($id);
+        $lugar->fill($request->all());
+        $lugar->save();
+        return response()->json(['lugar'=> 'Se actualizo correctamente']);
     }
 
     public function editar(Request $request)
     {
-        $nombre='Se actualizo';
-        return response()->json(['lugar'=> $nombre]);
+        $lugar= LugarTuristico::find($_POST['id']);
+        $lugar->fill($request->all());
+        $lugar->save();
+
+         $destinationPath =  public_path('imagenes/');
+         $bandera=1;
+        foreach ($_FILES as $key) //Iteramos el arreglo de archivos
+        {
+              if($bandera==1)
+              {
+                $this->eliminarImagenes($lugar->id_lugar_turistico);
+              }
+              $imagenLugar=new ImagenLugarTuristico;
+              $nombreImagen=$key["name"];
+              
+              $fileName = $destinationPath.$nombreImagen; // renameing image
+              move_uploaded_file($key["tmp_name"], $fileName);
+              $imagenLugar->ruta_imagen= $fileName;
+              $imagenLugar->fk_id_lugar_turistico= $lugar->id_lugar_turistico;
+              $imagenLugar->save();
+              $bandera=2;
+        }
+        return response()->json();
     }
 
     /**
