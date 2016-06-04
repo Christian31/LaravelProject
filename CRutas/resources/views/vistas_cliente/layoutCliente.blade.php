@@ -199,6 +199,7 @@ $(document).ready(function() {
 		<ul class="menu list-unstyled">
 			<li id="inicio"><a href="{!!URL::to('/')!!}">INICIO</a></li>
 			<li id="nosotros"><a href="{!!URL::to('nosotros')!!}">Acerca De</a></li>
+			<li id="nosotros"><a href="{!!URL::to('mapa')!!}">Mapa del sitio</a></li>
 			<!--<li id="buscar"><a href="{!!URL::to('rutaTuristica')!!}">Buscar rutas turísticas</a></li>-->
 		</ul>
 		</nav>
