@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', function () {
-    return view('mapa');
+Route::get('mapa', function () {
+    return view('vistas_cliente.mapaSitio');
 });
 
 //login 
