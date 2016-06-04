@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\LugarTuristico;
 use App\LugarTuristicoProbs;
 use App\LugarTuristicoDataset;
+use \DB;
 
 class RutaTuristicaController extends Controller
 {
@@ -46,7 +47,7 @@ class RutaTuristicaController extends Controller
         //QUE CALCULA LA CLASE BASADO EN LAS PROBABILIDADES
         //EN RESUMEN, OBTIENE 0 O 1
         $lugares = LugarTuristico::where('clase_lugar_turistico','=', $claseLugar)->get();
-    
+    return $lugares;
     }
 
     /*
@@ -61,7 +62,7 @@ class RutaTuristicaController extends Controller
 
         $prob2 = (($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '1', 'fk_id_ubicacion', $ubicacion)) * ($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '1', 'precio_lugar_turistico', $precio)) * ($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '1', 'tipo_atractivo', $tipo_lugar))) * $this->get_table_probClass('lugar_turistico_dataset', 'clase', '1');
         
-        $prob = max($probb, $probbb);
+        $prob = max($prob1, $prob2);
         
         if ($prob != 0) {
             if ($prob == $prob1) {
@@ -75,9 +76,10 @@ class RutaTuristicaController extends Controller
         /**
         * se obtiene la probabilidad de un atributo especifico de la tabla de las probabilidades
         */
-        $proAtriClass = LugarTuristicoProbs::where($class,'like','%'.$valClass.'%')->where('atributo', '=', $atributo)->where('val', '=', $valAtributo)->get();
-
-        return $proAtriClass[0]->prob; 
+        $row = DB::select("SELECT prob from ".$tableProb." where ".$class." LIKE '%".$valClass."%' AND atributo = '".$atributo."' AND val = ".$valAtributo."");
+        //$proAtriClass = LugarTuristicoProbs::where($class,'like','%'.$valClass.'%')->where('atributo', '=', $atributo)->where('val', '=', $valAtributo)->get();
+        
+        return doubleval($row);; 
     }
 
     public function get_table_probClass($table, $class, $valClass){
@@ -95,7 +97,7 @@ class RutaTuristicaController extends Controller
         /**
         * se calcula la probabilidad total de la clase y retorna el valor
         */
-        $probClass = bcdiv($probClassClass, ($probTotal), 8);
+        $probClass = bcdiv($probClassClass, ($proTotal), 8);
         return $probClass;
     }
 
