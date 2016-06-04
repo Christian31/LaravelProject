@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\LugarTuristico;
 use App\LugarTuristicoProbs;
 use App\LugarTuristicoDataset;
-use \Db;
+use \DB;
 
 class RutaTuristicaController extends Controller
 {
@@ -47,7 +47,7 @@ class RutaTuristicaController extends Controller
         //QUE CALCULA LA CLASE BASADO EN LAS PROBABILIDADES
         //EN RESUMEN, OBTIENE 0 O 1
         $lugares = LugarTuristico::where('clase_lugar_turistico','=', $claseLugar)->get();
-    
+    return $lugares;
     }
 
     /*
@@ -62,7 +62,7 @@ class RutaTuristicaController extends Controller
 
         $prob2 = (($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '1', 'fk_id_ubicacion', $ubicacion)) * ($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '1', 'precio_lugar_turistico', $precio)) * ($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '1', 'tipo_atractivo', $tipo_lugar))) * $this->get_table_probClass('lugar_turistico_dataset', 'clase', '1');
         
-        $prob = max($probb, $probbb);
+        $prob = max($prob1, $prob2);
         
         if ($prob != 0) {
             if ($prob == $prob1) {
@@ -97,7 +97,7 @@ class RutaTuristicaController extends Controller
         /**
         * se calcula la probabilidad total de la clase y retorna el valor
         */
-        $probClass = bcdiv($probClassClass, ($probTotal), 8);
+        $probClass = bcdiv($probClassClass, ($proTotal), 8);
         return $probClass;
     }
 
