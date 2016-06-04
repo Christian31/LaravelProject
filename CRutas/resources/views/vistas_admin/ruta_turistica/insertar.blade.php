@@ -105,7 +105,16 @@
                     </div>
 
                     
-
+                     <div class="form-group">
+                      <label for="clase">Clase</label>
+                      <select id="clase" data-rel="chosen" name="clase">
+                             
+                            <option value="1">1</option>
+                           <option value="2">2</option>
+                         
+                            
+                        </select>
+                    </div>
 
                     <div class="form-group">
                       <label for="imagen">Seleccionar las imagenes</label>

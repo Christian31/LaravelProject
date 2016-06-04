@@ -12,6 +12,7 @@ function insertarRuta(){
     var imagen = inputFileImage.files;
     var latitud=$("#latitud").val();
     var longitud=$("#longitud").val();
+    var clase=$("#clase").val();
     var route =getBaseDir()+"lugarTuristico";
 
 
@@ -32,6 +33,7 @@ function insertarRuta(){
         dato.append('tipo',tipo);
         dato.append('latitud',latitud);
         dato.append('longitud',longitud);
+        dato.append('clase',clase);
 		//alert("hola");
         $.ajax({
 				url: route,

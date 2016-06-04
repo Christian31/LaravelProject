@@ -67,6 +67,7 @@ class LugarTuristicoController extends Controller
         $lugar->tipo_atractivo_lugar_turistico=$_POST['tipo'];
         $lugar->latitud=$_POST['latitud'];
         $lugar->longitud=$_POST['longitud'];
+        $lugar->clase=$_POST['clase'];
 
         //$imagen->$request['imagen'];
         //var_dump($lugar);
