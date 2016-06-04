@@ -47,6 +47,24 @@ class RutaTuristicaController extends Controller
         //QUE CALCULA LA CLASE BASADO EN LAS PROBABILIDADES
         //EN RESUMEN, OBTIENE 0 O 1
         $lugares = LugarTuristico::where('clase_lugar_turistico','=', $claseLugar)->get();
+        $lugares_generados = LugarTuristicoDataset::where('clase','=', $claseLugar)->get();
+
+        //CASTEO DE LOS DATOS GENERADOS A OBJETOS DE LUGARES TURISTICOS PARA PODER MANEJARLOS EN UNA MISMA LISTA
+        //Y CREAR LA RUTA EN BASE A ESA LISTA
+        foreach ($lugares_generados as $lugar_temp) {
+            $lugar = new LugarTuristico();
+            $lugar->id_lugar_turistico = $lugar_temp->id;
+            $lugar->fk_id_ubicacion = $lugar_temp->fk_id_ubicacion;
+            $lugar->precio_lugar_turistico = $lugar_temp->precio_lugar_turistico;
+            $lugar->tipo_atractivo_lugar_turistico = $lugar_temp->tipo_atractivo;
+            $lugar->clase_lugar_turistico = $lugar_temp->clase;
+            $lugar->distancia_ubicacion = 10;
+            $lugar->tiempo_llegada_ubicacion = 1;
+            array_push($lugares, $lugar);
+        }
+
+
+
     return $lugares;
     }
 
@@ -58,17 +76,17 @@ class RutaTuristicaController extends Controller
         $clase = 1;
         $prob1 = (($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '0', 'fk_id_ubicacion', $ubicacion)) * ($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '0', 'precio_lugar_turistico', $precio)) * ($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '0', 'tipo_atractivo', $tipo_lugar))) * $this->get_table_probClass('lugar_turistico_dataset', 'clase', '0');
 
- 
-
         $prob2 = (($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '1', 'fk_id_ubicacion', $ubicacion)) * ($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '1', 'precio_lugar_turistico', $precio)) * ($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '1', 'tipo_atractivo', $tipo_lugar))) * $this->get_table_probClass('lugar_turistico_dataset', 'clase', '1');
         
         $prob = max($prob1, $prob2);
         
         if ($prob != 0) {
-            if ($prob == $prob1) {
+            if ($prob == $prob1) {    
                 $clase = 0;
             }
         }
+
+
         return $clase;
     }
 
