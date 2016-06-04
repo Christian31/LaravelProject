@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\LugarTuristico;
 use App\LugarTuristicoProbs;
 use App\LugarTuristicoDataset;
+use \Db;
 
 class RutaTuristicaController extends Controller
 {
@@ -75,9 +76,10 @@ class RutaTuristicaController extends Controller
         /**
         * se obtiene la probabilidad de un atributo especifico de la tabla de las probabilidades
         */
-        $proAtriClass = LugarTuristicoProbs::where($class,'like','%'.$valClass.'%')->where('atributo', '=', $atributo)->where('val', '=', $valAtributo)->get();
-
-        return $proAtriClass[0]->prob; 
+        $row = DB::select("SELECT prob from ".$tableProb." where ".$class." LIKE '%".$valClass."%' AND atributo = '".$atributo."' AND val = ".$valAtributo."");
+        //$proAtriClass = LugarTuristicoProbs::where($class,'like','%'.$valClass.'%')->where('atributo', '=', $atributo)->where('val', '=', $valAtributo)->get();
+        
+        return doubleval($row);; 
     }
 
     public function get_table_probClass($table, $class, $valClass){
