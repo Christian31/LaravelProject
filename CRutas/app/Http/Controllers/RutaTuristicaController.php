@@ -39,26 +39,14 @@ class RutaTuristicaController extends Controller
 
     private function buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar){
 
-        $claseLugar = algoritmoBayesResult($ubicacion, $precio, $tipo_lugar);
+        $claseLugar = $this->algoritmoBayesResult($ubicacion, $precio, $tipo_lugar);
 
         
         //CON ESTO LE RETORNA TODOS LOS SITIOS INSERTADOS QUE POSEEN LA CLASE CON EL VALOR OBTENIDO DEL METODO
         //QUE CALCULA LA CLASE BASADO EN LAS PROBABILIDADES
         //EN RESUMEN, OBTIENE 0 O 1
         $lugares = LugarTuristico::where('clase_lugar_turistico','=', $claseLugar)->get();
-     /////EUCLIDES
-       $suma=0;
-       $arreglo_lugares = array();
-       foreach ($lugares as $fila){
-            $suma = abs($ubicacion-$fila->fk_id_ubicacion)+abs($precio-$fila->precio_lugar_turistico)+abs($tipo_lugar-$fila->tipo_atractivo_lugar_turistico);
-            if($suma==0){
-                array_push($arreglo_lugares, $fila);
-            }
-        }//fin for
-       ///EUCLIDES
-
-
-        return $arreglo_lugares;
+    
     }
 
     /*
@@ -68,6 +56,9 @@ class RutaTuristicaController extends Controller
     private function algoritmoBayesResult($ubicacion, $precio, $tipo_lugar){
         $clase = 1;
         $prob1 = (($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '0', 'fk_id_ubicacion', $ubicacion)) * ($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '0', 'precio_lugar_turistico', $precio)) * ($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '0', 'tipo_atractivo', $tipo_lugar))) * $this->get_table_probClass('lugar_turistico_dataset', 'clase', '0');
+
+ 
+
         $prob2 = (($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '1', 'fk_id_ubicacion', $ubicacion)) * ($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '1', 'precio_lugar_turistico', $precio)) * ($this->get_table_atri_prob_num('lugar_turistico_probs', 'class', '1', 'tipo_atractivo', $tipo_lugar))) * $this->get_table_probClass('lugar_turistico_dataset', 'clase', '1');
         
         $prob = max($probb, $probbb);
@@ -84,9 +75,9 @@ class RutaTuristicaController extends Controller
         /**
         * se obtiene la probabilidad de un atributo especifico de la tabla de las probabilidades
         */
-        $proAtriClass = LugarTuristicoProbs::where($class,'like','%'.$valClass.'%')->AND('atributo', '=', $atributo)->AND('val', '=', $valAtributo)->get();
+        $proAtriClass = LugarTuristicoProbs::where($class,'like','%'.$valClass.'%')->where('atributo', '=', $atributo)->where('val', '=', $valAtributo)->get();
 
-        return $proAtriClass; 
+        return $proAtriClass[0]->prob; 
     }
 
     public function get_table_probClass($table, $class, $valClass){
@@ -104,8 +95,24 @@ class RutaTuristicaController extends Controller
         /**
         * se calcula la probabilidad total de la clase y retorna el valor
         */
-        $probClass = bcdiv($probClassClass, ($probTotal)), 8);
+        $probClass = bcdiv($probClassClass, ($probTotal), 8);
         return $probClass;
+    }
+
+    public function algoritmoEuclidesResult($lugares){
+         /////EUCLIDES
+       $suma=0;
+       $arreglo_lugares = array();
+       foreach ($lugares as $fila){
+            $suma = abs($ubicacion-$fila->fk_id_ubicacion)+abs($precio-$fila->precio_lugar_turistico)+abs($tipo_lugar-$fila->tipo_atractivo_lugar_turistico);
+            if($suma==0){
+                array_push($arreglo_lugares, $fila);
+            }
+        }//fin for
+       ///EUCLIDES
+
+
+        return $arreglo_lugares;
     }
 
     /**
@@ -138,6 +145,7 @@ class RutaTuristicaController extends Controller
     public function show($id)
     {
         //
+   
     }
 
     /**
