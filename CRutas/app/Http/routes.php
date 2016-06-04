@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/', function () {
+    return view('mapa');
+});
+
 //login 
 Route::get('login',function(){
 	return view('vistas_admin.login');
@@ -41,7 +45,7 @@ Route::resource('rutaTuristica', 'RutaTuristicaController');
 Route::get('recorridoVirtual', 'RutaTuristicaController@vistaDetalleRuta');
 Route::get('nosotros', 'RutaTuristicaController@vistaNosotros');
 Route::post('buscarRutas', 'RutaTuristicaController@buscarRutas');
-Route::post('mapa', 'RutaTuristicaController@mapa');
+
 
 //usuario
 Route::post('iniciarSesion','UsuarioController@iniciarSesion');
