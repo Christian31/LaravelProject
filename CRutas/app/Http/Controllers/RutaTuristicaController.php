@@ -34,11 +34,11 @@ class RutaTuristicaController extends Controller
        $tiempo = $_POST['tiempo'];
        $precio= $_POST['precio'];
        $tipo_lugar=  $_POST['tipo'];
-       $lugares= $this->buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar);
+       $lugares= $this->buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar, $distancia, $tiempo);
         return response()->json(['mensaje'=>  count($lugares)]);
     }
 
-    private function buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar){
+    private function buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar, $distancia, $tiempo){
 
         $claseLugar = $this->algoritmoBayesResult($ubicacion, $precio, $tipo_lugar);
 
@@ -46,26 +46,30 @@ class RutaTuristicaController extends Controller
         //CON ESTO LE RETORNA TODOS LOS SITIOS INSERTADOS QUE POSEEN LA CLASE CON EL VALOR OBTENIDO DEL METODO
         //QUE CALCULA LA CLASE BASADO EN LAS PROBABILIDADES
         //EN RESUMEN, OBTIENE 0 O 1
+        $lugares=array();
+       
         $lugares = LugarTuristico::where('clase_lugar_turistico','=', $claseLugar)->get();
         $lugares_generados = LugarTuristicoDataset::where('clase','=', $claseLugar)->get();
 
         //CASTEO DE LOS DATOS GENERADOS A OBJETOS DE LUGARES TURISTICOS PARA PODER MANEJARLOS EN UNA MISMA LISTA
         //Y CREAR LA RUTA EN BASE A ESA LISTA
         foreach ($lugares_generados as $lugar_temp) {
-            $lugar = new LugarTuristico();
-            $lugar->id_lugar_turistico = $lugar_temp->id;
+            $lugar = new LugarTuristico;
+         $lugar->id_lugar_turistico = $lugar_temp->id;
+           $lugar->nombre_lugar_turistico = "Registro generado";
             $lugar->fk_id_ubicacion = $lugar_temp->fk_id_ubicacion;
             $lugar->precio_lugar_turistico = $lugar_temp->precio_lugar_turistico;
             $lugar->tipo_atractivo_lugar_turistico = $lugar_temp->tipo_atractivo;
             $lugar->clase_lugar_turistico = $lugar_temp->clase;
             $lugar->distancia_ubicacion = 10;
             $lugar->tiempo_llegada_ubicacion = 1;
-            array_push($lugares, $lugar);
+            $lugares->add($lugar);
         }
+    
 
 
-
-    return $lugares;
+    $lista_final= $this->algoritmoEuclidesResult($lugares,$ubicacion, $precio, $tipo_lugar, $distancia, $tiempo);
+    return $lista_final;
     }
 
     /*
@@ -119,7 +123,7 @@ class RutaTuristicaController extends Controller
         return $probClass;
     }
 
-    public function algoritmoEuclidesResult($lugares){
+    public function algoritmoEuclidesResult($lugares, $ubicacion, $precio, $tipo_lugar, $distancia, $tiempo){
          /////EUCLIDES
        $suma=0;
        $arreglo_lugares = array();
@@ -133,6 +137,13 @@ class RutaTuristicaController extends Controller
 
 
         return $arreglo_lugares;
+    }
+
+    public function crearRutas($lugares, $distancia, $tiempo){
+        foreach ($lugares as $lugar) {
+          
+        }
+
     }
 
     /**
