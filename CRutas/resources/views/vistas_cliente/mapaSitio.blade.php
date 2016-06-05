@@ -15,32 +15,40 @@
 <div class="main_btm1"><!-- start main_btm -->
 <div class="container">
 
-		<div class="main_grid">
+		<div class="main about span_of_3">
 		
-		<div class="span_of_4"><!-- start span_of_4 -->
-			<div class="col-md-3 span1_of_4">
-				<div class="span4_of_list">
-					<span class="active"><i class="fa fa-thumbs-o-up"></i></span>
-					<h3>Inicio</h3>
-					<p>Página principal del sitio web, contiene el Formulario de busqueda para las rutas</p>
-					<div class="read_more">
-						<a class="btn btn-2 active" href="single-page.html">Contenido de Inicio</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3 span1_of_4">
-				<div class="span4_of_list">
-					<span><i class="fa fa-lock"></i></span>
-					<h3>Nosotros</h3>
-					<p>Pagina que muestra información acerca del sitio</p>
-					<div class="read_more">
-						<a class="btn  btn-2b" href="single-page.html">view more</a>
-					</div>	
-				</div>	
-			</div>
+		
+		<div class="col-md-3 span1_of_3">
+			<h4>Inicio</h4>
+			<p class="para">Página principal del sitio web, contiene el Formulario de busqueda para las rutas</p>
 			
-			<div class="clearfix"></div>
-		</div><!-- end span_of_4 -->
+			<ul class="list-unstyled nav_list">
+				<li><a >Formulario de busqueda de rutas</a>
+					<p class="para">Al buscar una ruta mostrara una pantalla con las rutas seleccionadas</p>
+					<p class="para">&nbsp;&nbsp;Contenido</p>
+					<ul class="list-unstyled nav_list">
+						<li><a >Rutas Seleccionadas</a>
+							<p class="para">&nbsp;&nbsp;Aquí puede seleccionar para ver el detalle de cada ruta</p>
+							<ul class="list-unstyled nav_list">
+								<li><a >Detalle de cada ruta</a>
+									<p class="para">&nbsp;&nbsp;Muestra el detalle de la ruta seleccionada</p>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				
+			</ul>
+		</div>	
+
+			<div class="col-md-3 span1_of_3">
+			<h4>Acerca de</h4>
+			<p class="para">Página que muestra información acerca del sitio</p>
+			
+		
+		</div>
+		
+		<div class="clearfix"></div>
 	</div>
 	
 	
@@ -48,6 +56,6 @@
 </div>
 </div>
 <script>
-$('#nosotros').addClass('activate');
+$('#mapa').addClass('activate');
 </script>
 @endsection
