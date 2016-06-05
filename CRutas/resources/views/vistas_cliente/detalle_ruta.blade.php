@@ -6,9 +6,9 @@
 
 <script type="text/javascript" src="cliente/js/jquery.slides.js"></script>
 <!--<script src="http://maps.googleapis.com/maps/api/js?v3></script>-->
-<!-- <script src="http://maps.googleapis.com/maps/api/js?v3"></script>-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGNEOaAIewFw3SovuyyopdNhQHlZ4xbtg"></script>
-
+ <!--<script src="http://maps.googleapis.com/maps/api/js?v3"></script>-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCX-4KNnBze_bjEig4PR96yHsLKpPCEHQ"></script>
+<!--<script src={{ URL::asset('https://maps.googleapis.com/maps/api/js?key=AIzaSyBCX-4KNnBze_bjEig4PR96yHsLKpPCEHQ') }}></script>-->
 <div class="main_bg"><!-- start main -->
   <div class="container">
     <div class="main_grid1">
@@ -34,63 +34,16 @@
 <br>
 
 <div   id="mapa" style="width: 550px; height: 500px; float:left;"> </div>
-<script type="text/javascript">
-var latitudPP = Number($("#latitudUbicacion").val());
-var longitudPP = Number($("#longitudUbicacion").val());
-
-
-
-  var puntoPartida = {lat:  latitudPP, lng: longitudPP};
-  var puntoFinal = {lat: 10.226087, lng: -85.747371};
-
-  var lugar1 = {lat:10.564218, lng: -85.399298};
- var lugar2={lat:  10.580624, lng:-85.573038};
- 
- var map = new google.maps.Map(document.getElementById('mapa'), {
-  center: puntoPartida,
-  scrollwheel: false,
-  zoom: 7
-});
-  var directionsDisplay = new google.maps.DirectionsRenderer({
-    map: map
-  });
-  var waypts = [];
-  waypts.push({
-    location: lugar1,
-    stopover: true
-  });
-  waypts.push({
-    location: lugar2,
-    stopover: true
-  });
-  
-  // Set destination, origin and travel mode.
-  var request = {
-    destination:  puntoFinal,
-    origin: puntoPartida,
-    waypoints: waypts,
-    optimizeWaypoints: true,
-    travelMode: google.maps.TravelMode.DRIVING
-  };
-  // Pass the directions request to the directions service.
-  var directionsService = new google.maps.DirectionsService();
-  directionsService.route(request, function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      // Display the route on the map.
-      directionsDisplay.setDirections(response);
-    }
-  });
- 
-</script>
-
  <!--<center>-->
-
+ <form id="myForm">
  <div style="float:left; margin-left: 80px">
  @foreach($lugaresVirtuales as $lugar)
    <div>
      <h3 style="color:#E8645A;">{{$lugar->nombre_lugar_turistico}}</h3>
      <h5>Distancia: {{$lugar->distancia_ubicacion}}Km </h5>
-   <input type="hidden"  name="arreglo[]" value="{{$lugar->id_lugar_turistico}}">
+    
+   <input type="hidden"  name="latitudes[]" value="{{$lugar->latitud}}">
+    <input type="hidden"  name="longitudes[]" value="{{$lugar->longitud}}">
      <div style="width: 440px"  class="slides">
 @foreach($lugar->lista_imagenes as $imagen)
       <img height="300" src="../public/imagenes/{{$imagen->ruta_imagen}}">
@@ -101,7 +54,9 @@ var longitudPP = Number($("#longitudUbicacion").val());
   </div>
   @endforeach
 </div>
+ </form>
 </div>
+
 <br>
 <!--</center>-->
 </div>
@@ -133,7 +88,8 @@ var longitudPP = Number($("#longitudUbicacion").val());
   });
 </script>
 <script>
-window.onload= prueba;
+
+window.onload= iniciarMapa;
 </script>
  
 @endsection

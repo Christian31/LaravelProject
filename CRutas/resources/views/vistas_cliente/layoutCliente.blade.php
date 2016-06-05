@@ -9,6 +9,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <head>
 <title>CRutas</title>
 <!-- Bootstrap -->
+
+
 <link href="cliente/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <link href="cliente/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,6 +35,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="cliente/js/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
 <script src="cliente/js/allinone_carousel.js" type="text/javascript"></script>
 <script src="cliente/js/route.js" type="text/javascript"></script>
+
  @yield('scripts') 
 <!--[if IE]><script src="js/excanvas.compiled.js" type="text/javascript"></script><![endif]-->
 <!-- must have -->
@@ -199,7 +202,7 @@ $(document).ready(function() {
 		<ul class="menu list-unstyled">
 			<li id="inicio"><a href="{!!URL::to('/')!!}">INICIO</a></li>
 			<li id="nosotros"><a href="{!!URL::to('nosotros')!!}">Acerca De</a></li>
-			<li id="mapa"><a href="{!!URL::to('mapa')!!}">Mapa del sitio</a></li>
+			<li id="mapaSitio"><a href="{!!URL::to('mapa')!!}">Mapa del sitio</a></li>
 			<!--<li id="buscar"><a href="{!!URL::to('rutaTuristica')!!}">Buscar rutas turísticas</a></li>-->
 		</ul>
 		</nav>

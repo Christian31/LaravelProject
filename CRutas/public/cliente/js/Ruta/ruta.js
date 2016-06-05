@@ -38,16 +38,40 @@ function prueba(){
       for(var i=0, len=inputs.length; i<len; i++){
         if(inputs[i].type === "hidden"){
           arr.push(inputs[i].value);
+         // alert(inputs[i].value);
         }
+           if(inputs[i].type === "hidden" && inputs[i].name === "latitudes[]"){
+  alert(inputs[i].value);
+}
       }
+   
 }
 
 function iniciarMapa(){
- 
-//alert(ubicacion);
-var prueba={lat: 10.624611, lng: -85.533965};
-  var puntoPartida = {lat:  10.633928, lng: -85.440718};
-  var puntoFinal = {lat: 10.226087, lng: -85.747371};
+ var latitudPuntoPartida = Number($("#latitudUbicacion").val());
+ var longitudPuntoPartida = Number($("#longitudUbicacion").val());
+
+ var form = document.getElementById("myForm");
+ inputs = form.getElementsByTagName("input");
+ latitudes = [];
+ longitudes=[];
+
+ for(var i=0, len=inputs.length; i<len; i++){
+  if(inputs[i].type === "hidden" && inputs[i].name === "latitudes[]"){
+    latitudes.push(inputs[i].value);
+    //alert("latitud: "+ inputs[i].value);
+  }else if (inputs[i].type === "hidden" && inputs[i].name === "longitudes[]"){
+   longitudes.push(inputs[i].value);
+   //alert("longitudes: "+ inputs[i].value);
+  }
+}
+var posicionFinal= latitudes.length-1;
+var latitudPuntoFinal= Number(latitudes[posicionFinal]);
+var longitudPuntoFinal= Number(longitudes[posicionFinal]);
+
+
+  var puntoPartida = {lat:  latitudPuntoPartida, lng: longitudPuntoPartida};
+  var puntoFinal = {lat: latitudPuntoFinal, lng: longitudPuntoFinal};
 
   var lugar1 = {lat:10.564218, lng: -85.399298};
  var lugar2={lat:  10.580624, lng:-85.573038};
@@ -79,14 +103,19 @@ var prueba={lat: 10.624611, lng: -85.533965};
     map: map
   });
   var waypts = [];
-  waypts.push({
-    location: lugar1,
+  for(var j=0; j<=latitudes.length-1; j++){
+     lat = Number(latitudes[j]);
+      long = Number(longitudes[j]);
+     waypts.push({
+    location:  {lat: lat, lng: long},
     stopover: true
   });
-  waypts.push({
+  }
+ 
+ /* waypts.push({
     location: lugar2,
     stopover: true
-  });
+  });*/
   
   // Set destination, origin and travel mode.
   var request = {

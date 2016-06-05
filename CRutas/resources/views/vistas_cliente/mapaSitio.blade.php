@@ -56,6 +56,6 @@
 </div>
 </div>
 <script>
-$('#mapa').addClass('activate');
+$('#mapaSitio').addClass('activate');
 </script>
 @endsection
