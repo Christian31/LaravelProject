@@ -39,7 +39,6 @@ class RutaTuristicaController extends Controller
     }
 
     private function buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar, $distancia, $tiempo){
-
         $claseLugar = $this->algoritmoBayesResult($ubicacion, $precio, $tipo_lugar);
 
         
@@ -152,33 +151,75 @@ class RutaTuristicaController extends Controller
         return $value['distancia_ubicacion'];
     }));
 
-        foreach ($listaOrdenadaLugares as $lugar) {
+       //MARCE COMENTE LO SUYO PARA QUE PRUEBE LO MIO QUE ESTA DINAMICO
+        //foreach ($listaOrdenadaLugares as $lugar) {
           
-            if(count($listaOrdenadaLugares)<=5){  //solo se va a hacer una ruta
+            //if(count($listaOrdenadaLugares)<=5){  //solo se va a hacer una ruta
                 //valida que no se pase de la distancia y tiempo ingresados por el usuario
-                if($distanciaRuta<=$distanciaMaxima and $tiempoRuta<=$tiempoMaximo){
-                    array_push($rutaUno, $lugar);
-                    $distanciaRuta+=$lugar->distancia_ubicacion;
-                    $tiempoRuta+=$lugar->tiempo_llegada_ubicacion;
+                //if($distanciaRuta<=$distanciaMaxima and $tiempoRuta<=$tiempoMaximo){
+                    //array_push($rutaUno, $lugar);
+                    //$distanciaRuta+=$lugar->distancia_ubicacion;
+                    //$tiempoRuta+=$lugar->tiempo_llegada_ubicacion;
 
-                }
-
-
+                //}
 
 
-
-            }else if(count($lugares)<=10){ //se hacen dos rutas
+            //}else if(count($lugares)<=10){ //se hacen dos rutas
                    
 
-                }else{// se hacen tres rutas
+                //}else{// se hacen tres rutas
                     
 
-                }
+                //}
           
+        //}
+
+
+        $listaRutas = array();
+        $sumDist = 0;
+        $sumTiemp = 0;
+        $ruta = array();
+        $distanciaMaxima=$this->distanciaMaxima($distancia);
+        $tiempoMaximo=$this->tiempoMaximo($tiempo);
+
+        $sumDist = $listaOrdenadaLugares[0]->distancia_ubicacion;
+        $sumTiemp = $listaOrdenadaLugares[0]->tiempo_llegada_ubicacion;
+        $bandera = false;
+        $val = count($listaOrdenadaLugares);
+        array_push($listaOrdenadaLugares, null);
+        for ($i=0; $i < $val; $i++) { 
+
+            while ($sumTiemp<=$tiempoMaximo && $sumDist<=$distanciaMaxima && count($listaOrdenadaLugares)>0) {
+                    
+                    
+                        if($listaOrdenadaLugares[$i] = null){
+                            return $listaRutas;
+                        } else{
+                            if($bandera){
+                            $sumDist = $sumDist+($listaOrdenadaLugares[$i][5]);
+                            $sumTiemp = $sumTiemp+($listaOrdenadaLugares[$i][6]);
+                            }
+                            array_push($ruta, $listaOrdenadaLugares[$i]);
+                            array_shift($listaOrdenadaLugares);
+                        }
+                    
+                    $bandera = true;
+                    $i++;
+            }
+
+            if (count($ruta)==0) {
+                return $listaRutas;
+            } else {
+                array_push($listaRutas, $ruta);
+
+                $sumDist = $listaOrdenadaLugares[$i+1][5];
+                $sumTiemp = $listaOrdenadaLugares[$i+1][6];
+                $bandera = false;
+            }
         }
 
-        return $rutaUno;
-
+        //return $rutaUno;
+        return $listaRutas;
     }
 
     private function distanciaMaxima($distancia){
