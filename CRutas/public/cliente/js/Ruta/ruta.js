@@ -19,6 +19,7 @@ function buscarRutas(){
 		        processData: false,
 
 				success:function(response){
+       
 					alert(response.mensaje);
 					
 				},//fin succes

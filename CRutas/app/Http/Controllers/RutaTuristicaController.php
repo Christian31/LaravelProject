@@ -135,17 +135,85 @@ class RutaTuristicaController extends Controller
         }//fin for
        ///EUCLIDES
 
-
-        return $arreglo_lugares;
+       return  $this->crearRutas($arreglo_lugares, $distancia, $tiempo);
+       
     }
 
     public function crearRutas($lugares, $distancia, $tiempo){
-        foreach ($lugares as $lugar) {
+        $rutaUno= array();
+        $listaOrdenadaLugares= array();
+        $distanciaRuta=0;
+        $tiempoRuta=0;
+        $distanciaMaxima=$this->distanciaMaxima($distancia);
+        $tiempoMaximo=$this->tiempoMaximo($tiempo);
+       
+ 
+       $listaOrdenadaLugares= array_values(array_sort($lugares, function ($value){
+        return $value['distancia_ubicacion'];
+    }));
+
+        foreach ($listaOrdenadaLugares as $lugar) {
+          
+            if(count($listaOrdenadaLugares)<=5){  //solo se va a hacer una ruta
+                //valida que no se pase de la distancia y tiempo ingresados por el usuario
+                if($distanciaRuta<=$distanciaMaxima and $tiempoRuta<=$tiempoMaximo){
+                    array_push($rutaUno, $lugar);
+                    $distanciaRuta+=$lugar->distancia_ubicacion;
+                    $tiempoRuta+=$lugar->tiempo_llegada_ubicacion;
+
+                }
+
+
+
+
+
+            }else if(count($lugares)<=10){ //se hacen dos rutas
+                   
+
+                }else{// se hacen tres rutas
+                    
+
+                }
           
         }
 
+        return $rutaUno;
+
     }
 
+    private function distanciaMaxima($distancia){
+         if($distancia==1){
+          $distanciaMaxima=20;
+        }else if($distancia==2){
+            $distanciaMaxima=40;
+        }else if($distancia==3){
+            $distanciaMaxima=60;
+
+        }else{
+            $distanciaMaxima=80;
+        }
+
+        return $distanciaMaxima;
+
+    }
+
+  private function tiempoMaximo($tiempo){
+         if($tiempo==1){
+          $tiempoMaximo=3;
+        }else if($tiempo==2){
+            $tiempoMaximo=5;
+        }else if($tiempo==3){
+            $tiempoMaximo=9;
+
+        }else{
+            $tiempoMaximo=12;
+        }
+
+        return $tiempoMaximo;
+
+    }
+
+  
     /**
      * Show the form for creating a new resource.
      *
