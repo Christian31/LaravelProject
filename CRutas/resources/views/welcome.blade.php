@@ -84,16 +84,16 @@ $('#inicio').addClass('activate');
 @section('contenido2')
 <div class="container">
     <div class="contact"> 
-    <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+   <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">-->
         <div class="col-md-3"></div>
         <div class="col-md-6">
           <!--  <div class="contact-form">-->
-              <!--  <form method="GET" action="{!!URL::to('/resultados')!!}"> -->
+                <form method="POST" action="{!!URL::to('/buscarRutas')!!}"> 
 
                     <label for="selectUbicacion" class="control-label" style="font-size:large;">Ubicación</label>
-                    <select class="form-control" id="selectUbicacion">
+                    <select class="form-control" name="selectUbicacion">
                         <option value="2">Liberia, Guanacaste</option>
-                        <option value="3">La Fortuna, San Carlos</option>
+                        <option value="3">Alajuela, Alajuela</option>
                         <option value="1">Cartago, Cartago</option>
                         <option value="4">Limón, Limón</option>
                         <option value="5">Jacó, Puntarenas</option>
@@ -101,7 +101,7 @@ $('#inicio').addClass('activate');
                     <p class="help-block" style="font-size:small;">Seleccione la ubicación donde desea iniciar la ruta.</p>
                     <br>
                     <label for="selectTiempo" class="control-label" style="font-size:large;">Tiempo de Ruta</label>
-                    <select class="form-control" id="selectTiempo">
+                    <select class="form-control" name="selectTiempo">
                         <option value="1">De 1 a 3 Horas</option>
                         <option value="2">De 3 a 6 Horas</option>
                         <option value="3">De 6 a 9 Horas</option>
@@ -110,7 +110,7 @@ $('#inicio').addClass('activate');
                     <p class="help-block" style="font-size:small;">Seleccione el rango de tiempo que desea para la ruta.</p>
                     <br>
                     <label for="selectDistancia" class="control-label" style="font-size:large;">Distancia del punto de partida</label>
-                    <select class="form-control" id="selectDistancia">
+                    <select class="form-control" name="selectDistancia">
                         <option value="1">De 1 Km a 20 Km</option>
                         <option value="2">De 20 Km a 40 Km</option>
                         <option value="3">De 40 Km a 60 Km</option>
@@ -119,7 +119,7 @@ $('#inicio').addClass('activate');
                     <p class="help-block" style="font-size:small;">Seleccione el rango de distancia que desea para la ruta en base a la ubicación de partida.</p>
                     <br>
                     <label for="selectPrecio" class="control-label" style="font-size:large;">Precio</label>
-                    <select class="form-control" id="selectPrecio">
+                    <select class="form-control" name="selectPrecio">
                         <option value="1">De 0$ a 50$</option>
                         <option value="2">De 50$ a 100$</option>
                         <option value="3">De 100$ o más</option>
@@ -127,7 +127,7 @@ $('#inicio').addClass('activate');
                     <p class="help-block" style="font-size:small;">Seleccione el rango de precio que desea para los lugares turísticos</p>
                     <br>
                     <label for="selectTipo" class="control-label" style="font-size:large;">Tipo de lugar turístico</label>
-                    <select class="form-control" id="selectTipo">
+                    <select class="form-control" name="selectTipo">
                         <option value="1">Aventura</option>
                         <option value="2">Playa</option>
                         <option value="3">Cultural</option>
@@ -137,9 +137,9 @@ $('#inicio').addClass('activate');
                     
                     <div class="col-md-12"></div>
                    
-                        <span><input style="background-color: #62A29E"  class="btn btn-primary" onclick="buscarRutas();" type="submit" value="Buscar"></span>
+                        <span><input style="background-color: #62A29E"  class="btn btn-primary"  type="submit" value="Buscar"></span>
                         <br><br>
-                 
+                 </form>
              
           <!--  </div>-->
         </div>

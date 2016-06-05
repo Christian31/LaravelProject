@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\LugarTuristico;
+use App\Ubicacion;
+use App\LugarVirtual;
+use App\ImagenLugarTuristico;
+use App\Ruta;
 use App\LugarTuristicoProbs;
 use App\LugarTuristicoDataset;
 use \DB;
+use Session;
 
 class RutaTuristicaController extends Controller
 {
@@ -29,13 +34,17 @@ class RutaTuristicaController extends Controller
     }
 
     public function buscarRutas(Request $request){
-       $ubicacion= $_POST['ubicacion'];
-       $distancia= $_POST['distancia'];
-       $tiempo = $_POST['tiempo'];
-       $precio= $_POST['precio'];
-       $tipo_lugar=  $_POST['tipo'];
-       $lugares= $this->buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar, $distancia, $tiempo);
-        return response()->json(['mensaje'=>  count($lugares)]);
+       $ubicacion= $_POST['selectUbicacion'];
+       $distancia= $_POST['selectDistancia'];
+       $tiempo = $_POST['selectTiempo'];
+       $precio= $_POST['selectPrecio'];
+       $tipo_lugar=  $_POST['selectTipo'];
+       $ruta= $this->buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar, $distancia, $tiempo);
+      //  return response()->json(['mensaje'=>  count($lugares)]);
+       
+         Session::put('rutaUno', $ruta);
+
+         return view('vistas_cliente.listaBusqueda', array('ruta'=>$ruta));
     }
 
     private function buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar, $distancia, $tiempo){
@@ -67,8 +76,8 @@ class RutaTuristicaController extends Controller
     
 
 
-    $lista_final= $this->algoritmoEuclidesResult($lugares,$ubicacion, $precio, $tipo_lugar, $distancia, $tiempo);
-    return $lista_final;
+    $ruta= $this->algoritmoEuclidesResult($lugares,$ubicacion, $precio, $tipo_lugar, $distancia, $tiempo);
+    return $ruta;
     }
 
     /*
@@ -139,43 +148,55 @@ class RutaTuristicaController extends Controller
     }
 
     public function crearRutas($lugares, $distancia, $tiempo){
-        $rutaUno= array();
-        $listaOrdenadaLugares= array();
-        $distanciaRuta=0;
-        $tiempoRuta=0;
-        $distanciaMaxima=$this->distanciaMaxima($distancia);
-        $tiempoMaximo=$this->tiempoMaximo($tiempo);
-       
- 
-       $listaOrdenadaLugares= array_values(array_sort($lugares, function ($value){
-        return $value['distancia_ubicacion'];
-    }));
+         $ruta = new Ruta; //objeto que almacena la info de una ruta
+         $rutaUno= array();
+         $listaOrdenadaLugares= array();
+         $distanciaSum=0;
+         $tiempoSum=0;
+         $distanciaRuta=0;
+         $tiempoRuta=0;
+         $distanciaMaxima=$this->distanciaMaxima($distancia);
+         $tiempoMaximo=$this->tiempoMaximo($tiempo);
+         $listaOrdenadaLugares= array_values(array_sort($lugares, function ($value){
+            return $value['distancia_ubicacion'];
+        }));
 
-       //MARCE COMENTE LO SUYO PARA QUE PRUEBE LO MIO QUE ESTA DINAMICO
-        //foreach ($listaOrdenadaLugares as $lugar) {
-          
-            //if(count($listaOrdenadaLugares)<=5){  //solo se va a hacer una ruta
+         foreach( $listaOrdenadaLugares as $valor){
+            print_r($valor->distancia_ubicacion." ");
+
+         }
+
+            if(count($listaOrdenadaLugares)<=6){  //solo se va a hacer una ruta
                 //valida que no se pase de la distancia y tiempo ingresados por el usuario
-                //if($distanciaRuta<=$distanciaMaxima and $tiempoRuta<=$tiempoMaximo){
-                    //array_push($rutaUno, $lugar);
-                    //$distanciaRuta+=$lugar->distancia_ubicacion;
-                    //$tiempoRuta+=$lugar->tiempo_llegada_ubicacion;
-
-                //}
-
-
-            //}else if(count($lugares)<=10){ //se hacen dos rutas
-                   
-
-                //}else{// se hacen tres rutas
-                    
-
-                //}
-          
-        //}
+             foreach ($listaOrdenadaLugares as $lugar) {
+                 $distanciaSum+=$lugar->distancia_ubicacion;
+                $tiempoSum+=$lugar->tiempo_llegada_ubicacion;
+               if($distanciaSum<=$distanciaMaxima and $tiempoSum<=$tiempoMaximo){
+                $distanciaRuta= $distanciaSum;
+                $tiempoRuta=$tiempoSum;
+                array_push($rutaUno, $lugar);
+            }
 
 
-        $listaRutas = array();
+
+        }
+
+        $ruta->distancia_total= $distanciaRuta;
+        $ruta->tiempo_total= $tiempoRuta;
+        $ruta->lista_lugares= $rutaUno;
+            }else if(count($lugares)<=10){ //se hacen dos rutas
+
+
+                }else{// se hacen tres rutas
+
+
+                }
+
+
+
+                return $ruta;
+
+      /* $listaRutas = array();
         $sumDist = 0;
         $sumTiemp = 0;
         $ruta = array();
@@ -212,49 +233,79 @@ class RutaTuristicaController extends Controller
             } else {
                 array_push($listaRutas, $ruta);
 
-                $sumDist = $listaOrdenadaLugares[$i+1][5];
-                $sumTiemp = $listaOrdenadaLugares[$i+1][6];
+                $sumDist = $listaOrdenadaLugares[$i][5];
+                $sumTiemp = $listaOrdenadaLugares[$i][6];
                 $bandera = false;
             }
         }
 
-        //return $rutaUno;
-        return $listaRutas;
+        return $listaRutas;*/
     }
 
     private function distanciaMaxima($distancia){
-         if($distancia==1){
+       if($distancia==1){
           $distanciaMaxima=20;
-        }else if($distancia==2){
-            $distanciaMaxima=40;
-        }else if($distancia==3){
-            $distanciaMaxima=60;
+      }else if($distancia==2){
+        $distanciaMaxima=40;
+    }else if($distancia==3){
+        $distanciaMaxima=60;
 
-        }else{
-            $distanciaMaxima=80;
-        }
-
-        return $distanciaMaxima;
-
+    }else{
+        $distanciaMaxima=80;
     }
 
-  private function tiempoMaximo($tiempo){
-         if($tiempo==1){
-          $tiempoMaximo=3;
-        }else if($tiempo==2){
-            $tiempoMaximo=5;
-        }else if($tiempo==3){
-            $tiempoMaximo=9;
+    return $distanciaMaxima;
 
-        }else{
-            $tiempoMaximo=12;
-        }
+}
 
-        return $tiempoMaximo;
+private function tiempoMaximo($tiempo){
+   if($tiempo==1){
+      $tiempoMaximo=3;
+  }else if($tiempo==2){
+    $tiempoMaximo=5;
+}else if($tiempo==3){
+    $tiempoMaximo=9;
 
-    }
+}else{
+    $tiempoMaximo=12;
+}
 
-  
+return $tiempoMaximo;
+
+}
+
+//LOS METODOS QUE ESTAN ACA ABAJO SON PARA LO DEL RECORRIDO VIRTUAL
+public function crearRecorridoVirtual(){
+   $ruta= Session::get('rutaUno');
+   $listaLugaresVirtuales= array();
+   foreach ($ruta->lista_lugares as $valor) {
+    
+      if($valor->id_lugar_turistico>=201){//quiere decir que es un lugar real entonces busco las imagenes
+    $imagenes = ImagenLugarTuristico::where('fk_id_lugar_turistico', $valor->id_lugar_turistico)->get();
+    $lugarVirtual= new LugarVirtual;
+    $lugarVirtual->id_lugar_turistico= $valor->id;
+    $lugarVirtual->nombre_lugar_turistico= $valor->nombre_lugar_turistico;
+    $lugarVirtual->fk_id_ubicacion= $valor->fk_id_ubicacion;
+    $lugarVirtual->distancia_ubicacion= $valor->distancia_ubicacion;
+    $lugarVirtual->tiempo_llegada_ubicacion= $valor->tiempo_llegada_ubicacion;
+    $lugarVirtual->latitud= $valor->latitud;
+    $lugarVirtual->longitud= $valor->longitud;
+    $lugarVirtual->lista_imagenes= $imagenes;
+    array_push($listaLugaresVirtuales, $lugarVirtual);
+  //  $listaLugaresVirtuales->add($lugarVirtual);
+
+      }else{
+       
+
+      }
+   }
+
+   $ubicacion =  Ubicacion::where('id_ubicacion', $ruta->lista_lugares[0]->fk_id_ubicacion)->get();
+
+    return view('vistas_cliente.detalle_ruta', array('lugaresVirtuales'=>$listaLugaresVirtuales, 'ubicacion'=>$ubicacion[0]));
+}
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -285,7 +336,7 @@ class RutaTuristicaController extends Controller
     public function show($id)
     {
         //
-   
+
     }
 
     /**

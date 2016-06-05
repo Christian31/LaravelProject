@@ -45,6 +45,7 @@ Route::resource('rutaTuristica', 'RutaTuristicaController');
 Route::get('recorridoVirtual', 'RutaTuristicaController@vistaDetalleRuta');
 Route::get('nosotros', 'RutaTuristicaController@vistaNosotros');
 Route::post('buscarRutas', 'RutaTuristicaController@buscarRutas');
+Route::get('crearRecorridoVirtual', 'RutaTuristicaController@crearRecorridoVirtual');
 
 
 //usuario

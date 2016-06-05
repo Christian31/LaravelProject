@@ -12,6 +12,7 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        //
+        'http://localhost:8080/ejemploLaravel2/CRutas/public/buscarRutas',
+        'buscarRutas'
     ];
 }

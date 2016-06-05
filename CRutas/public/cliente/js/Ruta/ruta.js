@@ -18,20 +18,33 @@ function buscarRutas(){
 		        contentType: false,
 		        processData: false,
 
-				success:function(response){
+				success:function(){
        
-					alert(response.mensaje);
+					//alert(response.mensaje);
 					
 				},//fin succes
 
 			error:function(){
-				alert("error");
+				//alert("error");
 				}//fin error
 			});//fin ajax	
 }
 
-function iniciarMapa(){
+function prueba(){
+   var form = document.getElementById("myForm"),
+          inputs = form.getElementsByTagName("input"),
+          arr = [];
+          
+      for(var i=0, len=inputs.length; i<len; i++){
+        if(inputs[i].type === "hidden"){
+          arr.push(inputs[i].value);
+        }
+      }
+}
 
+function iniciarMapa(){
+ 
+//alert(ubicacion);
 var prueba={lat: 10.624611, lng: -85.533965};
   var puntoPartida = {lat:  10.633928, lng: -85.440718};
   var puntoFinal = {lat: 10.226087, lng: -85.747371};
