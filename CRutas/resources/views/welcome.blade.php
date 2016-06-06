@@ -139,6 +139,10 @@ $('#inicio').addClass('activate');
                    
                         <span><input style="background-color: #62A29E"  class="btn btn-primary"  type="submit" value="Buscar"></span>
                         <br><br>
+                         @if(Session::has('error'))
+               <center> <strong style="color:red; font-size:16px;">{{Session::get('error')}}</strong></center>
+
+                @endif
                  </form>
              
           <!--  </div>-->

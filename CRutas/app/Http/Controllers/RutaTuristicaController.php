@@ -41,10 +41,17 @@ class RutaTuristicaController extends Controller
        $tipo_lugar=  $_POST['selectTipo'];
        $ruta= $this->buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar, $distancia, $tiempo);
       //  return response()->json(['mensaje'=>  count($lugares)]);
-       
+       if($ruta->tiempo_total==0){
+        Session::flash('error', "No hay rutas disponibles");
+        return Redirect::to('/');
+          //hay q mostrar un mensaje de que no hay rutas disponibles
+       }else{
          Session::put('rutaUno', $ruta);
-
-         return view('vistas_cliente.listaBusqueda', array('ruta'=>$ruta));
+           return view('vistas_cliente.listaBusqueda', array('ruta'=>$ruta));
+       }
+        
+  
+        
     }
 
     private function buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar, $distancia, $tiempo){
@@ -149,6 +156,11 @@ class RutaTuristicaController extends Controller
 
     public function crearRutas($lugares, $distancia, $tiempo){
          $ruta = new Ruta; //objeto que almacena la info de una ruta
+        if(count($lugares)==0){
+            $ruta->tiempo_total=0;
+           return $ruta;
+        }else{
+           
          $rutaUno= array();
          $listaOrdenadaLugares= array();
          $distanciaSum=0;
@@ -160,11 +172,6 @@ class RutaTuristicaController extends Controller
          $listaOrdenadaLugares= array_values(array_sort($lugares, function ($value){
             return $value['distancia_ubicacion'];
         }));
-
-         foreach( $listaOrdenadaLugares as $valor){
-            print_r($valor->distancia_ubicacion." ");
-
-         }
 
             if(count($listaOrdenadaLugares)<=6){  //solo se va a hacer una ruta
                 //valida que no se pase de la distancia y tiempo ingresados por el usuario
@@ -240,6 +247,8 @@ class RutaTuristicaController extends Controller
         }
 
         return $listaRutas;*/
+        }
+         
     }
 
     private function distanciaMaxima($distancia){
@@ -279,25 +288,24 @@ public function crearRecorridoVirtual(){
    $ruta= Session::get('rutaUno');
    $listaLugaresVirtuales= array();
    foreach ($ruta->lista_lugares as $valor) {
-    
-      if($valor->id_lugar_turistico>=201){//quiere decir que es un lugar real entonces busco las imagenes
-    $imagenes = ImagenLugarTuristico::where('fk_id_lugar_turistico', $valor->id_lugar_turistico)->get();
-    $lugarVirtual= new LugarVirtual;
-    $lugarVirtual->id_lugar_turistico= $valor->id;
+     $lugarVirtual= new LugarVirtual;
+    $lugarVirtual->id_lugar_turistico= $valor->id_lugar_turistico;
     $lugarVirtual->nombre_lugar_turistico= $valor->nombre_lugar_turistico;
     $lugarVirtual->fk_id_ubicacion= $valor->fk_id_ubicacion;
     $lugarVirtual->distancia_ubicacion= $valor->distancia_ubicacion;
     $lugarVirtual->tiempo_llegada_ubicacion= $valor->tiempo_llegada_ubicacion;
+   
+      if($valor->id_lugar_turistico>=201){//quiere decir que es un lugar real entonces busco las imagenes
+    $imagenes = ImagenLugarTuristico::where('fk_id_lugar_turistico', $valor->id_lugar_turistico)->get();
     $lugarVirtual->latitud= $valor->latitud;
     $lugarVirtual->longitud= $valor->longitud;
     $lugarVirtual->lista_imagenes= $imagenes;
-    array_push($listaLugaresVirtuales, $lugarVirtual);
-  //  $listaLugaresVirtuales->add($lugarVirtual);
-
       }else{
-       
-
+         $lugarVirtual->latitud= 0;
+    $lugarVirtual->longitud= 0;
+    $lugarVirtual->lista_imagenes= null;
       }
+       array_push($listaLugaresVirtuales, $lugarVirtual);
    }
 
    $ubicacion =  Ubicacion::where('id_ubicacion', $ruta->lista_lugares[0]->fk_id_ubicacion)->get();

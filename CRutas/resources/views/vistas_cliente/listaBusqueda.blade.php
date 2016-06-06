@@ -33,9 +33,7 @@
                 <th><h4 align="center">Recorrido virtual</h4></th>
             </tr>
           </thead>
-
           <tr>
-          
           <td><h5>1</h5></td>
             <td><h5>{{$ruta->tiempo_total}} horas</h5></td>
              <td><h5>{{$ruta->distancia_total}} Km</h5></td>
@@ -43,7 +41,7 @@
 
           
           </tr>
-          
+         
           <!--  <tbody id ="datos_busqueda">
           </tbody>-->
   </table>

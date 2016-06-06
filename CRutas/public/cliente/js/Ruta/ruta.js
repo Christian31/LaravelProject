@@ -30,22 +30,6 @@ function buscarRutas(){
 			});//fin ajax	
 }
 
-function prueba(){
-   var form = document.getElementById("myForm"),
-          inputs = form.getElementsByTagName("input"),
-          arr = [];
-          
-      for(var i=0, len=inputs.length; i<len; i++){
-        if(inputs[i].type === "hidden"){
-          arr.push(inputs[i].value);
-         // alert(inputs[i].value);
-        }
-           if(inputs[i].type === "hidden" && inputs[i].name === "latitudes[]"){
-  alert(inputs[i].value);
-}
-      }
-   
-}
 
 function iniciarMapa(){
  var latitudPuntoPartida = Number($("#latitudUbicacion").val());
@@ -58,29 +42,69 @@ function iniciarMapa(){
 
  for(var i=0, len=inputs.length; i<len; i++){
   if(inputs[i].type === "hidden" && inputs[i].name === "latitudes[]"){
-    latitudes.push(inputs[i].value);
-    //alert("latitud: "+ inputs[i].value);
+    if(inputs[i].value!=0){
+       latitudes.push(inputs[i].value);
+     }
+   
+  
   }else if (inputs[i].type === "hidden" && inputs[i].name === "longitudes[]"){
-   longitudes.push(inputs[i].value);
-   //alert("longitudes: "+ inputs[i].value);
+    if(inputs[i].value!=0){
+       longitudes.push(inputs[i].value);
+    }
+  
+  
   }
 }
-var posicionFinal= latitudes.length-1;
-var latitudPuntoFinal= Number(latitudes[posicionFinal]);
-var longitudPuntoFinal= Number(longitudes[posicionFinal]);
-
-
-  var puntoPartida = {lat:  latitudPuntoPartida, lng: longitudPuntoPartida};
-  var puntoFinal = {lat: latitudPuntoFinal, lng: longitudPuntoFinal};
-
-  var lugar1 = {lat:10.564218, lng: -85.399298};
- var lugar2={lat:  10.580624, lng:-85.573038};
- 
- var map = new google.maps.Map(document.getElementById('mapa'), {
+ var puntoPartida = {lat:  latitudPuntoPartida, lng: longitudPuntoPartida};
+  var map = new google.maps.Map(document.getElementById('mapa'), {
   center: puntoPartida,
   scrollwheel: false,
   zoom: 7
 });
+
+if(latitudes.length!=0){
+  var posicionFinal= latitudes.length-1;
+var latitudPuntoFinal= Number(latitudes[posicionFinal]);
+var longitudPuntoFinal= Number(longitudes[posicionFinal]);
+
+  var puntoFinal = {lat: latitudPuntoFinal, lng: longitudPuntoFinal};
+
+
+  var directionsDisplay = new google.maps.DirectionsRenderer({
+    map: map
+  });
+  var waypts = [];
+  for(var j=0; j<=latitudes.length-1; j++){
+     lat = Number(latitudes[j]);
+      long = Number(longitudes[j]);
+     waypts.push({
+    location:  {lat: lat, lng: long},
+    stopover: true
+  });
+  }
+  // Set destination, origin and travel mode.
+  var request = {
+    destination:  puntoFinal,
+    origin: puntoPartida,
+    waypoints: waypts,
+    optimizeWaypoints: true,
+    travelMode: google.maps.TravelMode.DRIVING
+  };
+  // Pass the directions request to the directions service.
+  var directionsService = new google.maps.DirectionsService();
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      // Display the route on the map.
+      directionsDisplay.setDirections(response);
+    }
+  });
+
+}
+
+}
+
+
+
 //MARKER
 
 /* var contentString = '<h1>Hola</h1>'
@@ -99,41 +123,8 @@ var longitudPuntoFinal= Number(longitudes[posicionFinal]);
   });*/
 
 //MARKER
-  var directionsDisplay = new google.maps.DirectionsRenderer({
-    map: map
-  });
-  var waypts = [];
-  for(var j=0; j<=latitudes.length-1; j++){
-     lat = Number(latitudes[j]);
-      long = Number(longitudes[j]);
-     waypts.push({
-    location:  {lat: lat, lng: long},
-    stopover: true
-  });
-  }
- 
- /* waypts.push({
+
+/* waypts.push({
     location: lugar2,
     stopover: true
   });*/
-  
-  // Set destination, origin and travel mode.
-  var request = {
-    destination:  puntoFinal,
-    origin: puntoPartida,
-    waypoints: waypts,
-    optimizeWaypoints: true,
-    travelMode: google.maps.TravelMode.DRIVING
-  };
-  // Pass the directions request to the directions service.
-  var directionsService = new google.maps.DirectionsService();
-  directionsService.route(request, function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      // Display the route on the map.
-      directionsDisplay.setDirections(response);
-    }
-  });
-}
-
-
-

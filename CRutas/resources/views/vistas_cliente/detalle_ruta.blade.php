@@ -41,14 +41,26 @@
    <div>
      <h3 style="color:#E8645A;">{{$lugar->nombre_lugar_turistico}}</h3>
      <h5>Distancia: {{$lugar->distancia_ubicacion}}Km </h5>
-    
+      @if ($lugar->latitud===0)
+       <input type="hidden"  name="latitudes[]" value="0">
+    <input type="hidden"  name="longitudes[]" value="0">
+         @else
    <input type="hidden"  name="latitudes[]" value="{{$lugar->latitud}}">
     <input type="hidden"  name="longitudes[]" value="{{$lugar->longitud}}">
-     <div style="width: 440px"  class="slides">
+     @endif
+
+    @if($lugar->lista_imagenes===null)
+      <h5>ID del registro generado: {{$lugar->id_lugar_turistico}}<h5>
+     @else
+      <div style="width: 440px"  class="slides">
+
+
 @foreach($lugar->lista_imagenes as $imagen)
       <img height="300" src="../public/imagenes/{{$imagen->ruta_imagen}}">
        @endforeach
     </div>
+     @endif
+    
 
     
   </div>
