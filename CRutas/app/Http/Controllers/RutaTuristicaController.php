@@ -156,8 +156,10 @@ class RutaTuristicaController extends Controller
             while ($i < count($arreglo_lugares) and $i <= 5) {
                 array_push($arreglo_split, $arreglo_lugares[$i]);
                 if (count($rutas)<=3 or count($rutas)>0) {
-                    array_push($rutas, $this->crearRutas($arreglo_split, $distancia, $tiempo));
-                    //$rutas->add($this->crearRutas($arreglo_lugares[$i], $distancia, $tiempo));
+                    $ruta = new Ruta();
+                    $ruta = $this->crearRutas($arreglo_split, $distancia, $tiempo);
+                    Session::put(count($rutas), $ruta);
+                    array_push($rutas, $ruta);
                 }
                 $i++;
             }
