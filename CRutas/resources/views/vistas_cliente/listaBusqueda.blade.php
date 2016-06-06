@@ -33,14 +33,14 @@
                 <th><h4 align="center">Recorrido virtual</h4></th>
             </tr>
           </thead>
+          @for ($i = 0; $i < count($rutas); $i++)
           <tr>
-          <td><h5>1</h5></td>
-            <td><h5>{{$ruta->tiempo_total}} horas</h5></td>
-             <td><h5>{{$ruta->distancia_total}} Km</h5></td>
+          <td><h5>{{$i+1}}</h5></td>
+            <td><h5>{{$rutas[$i]->tiempo_total}} horas</h5></td>
+             <td><h5>{{$rutas[$i]->distancia_total}} Km</h5></td>
              <td><a href="{!!URL::to('crearRecorridoVirtual')!!}"><h5>Ver</h5></a></td>
-
-          
           </tr>
+          @endfor
          
           <!--  <tbody id ="datos_busqueda">
           </tbody>-->

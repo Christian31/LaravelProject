@@ -39,15 +39,14 @@ class RutaTuristicaController extends Controller
        $tiempo = $_POST['selectTiempo'];
        $precio= $_POST['selectPrecio'];
        $tipo_lugar=  $_POST['selectTipo'];
-       $ruta= $this->buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar, $distancia, $tiempo);
+       $rutas= $this->buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar, $distancia, $tiempo);
       //  return response()->json(['mensaje'=>  count($lugares)]);
-       if($ruta->tiempo_total==0){
+       if(count($rutas)==0){
         Session::flash('error', "No hay rutas disponibles");
         return Redirect::to('/');
           //hay q mostrar un mensaje de que no hay rutas disponibles
        }else{
-         Session::put('rutaUno', $ruta);
-           return view('vistas_cliente.listaBusqueda', array('ruta'=>$ruta));
+           return view('vistas_cliente.listaBusqueda', array('rutas'=>$rutas));
        }
         
   
@@ -142,6 +141,7 @@ class RutaTuristicaController extends Controller
          /////EUCLIDES
        $suma=0;
        $arreglo_lugares = array();
+       $rutas = array();
        foreach ($lugares as $fila){
             $suma = abs($ubicacion-$fila->fk_id_ubicacion)+abs($precio-$fila->precio_lugar_turistico)+abs($tipo_lugar-$fila->tipo_atractivo_lugar_turistico);
             if($suma==0){
@@ -150,8 +150,21 @@ class RutaTuristicaController extends Controller
         }//fin for
        ///EUCLIDES
 
-       return  $this->crearRutas($arreglo_lugares, $distancia, $tiempo);
-       
+       //return  $this->crearRutas($arreglo_lugares, $distancia, $tiempo);
+        for ($i=0; $i < count($arreglo_lugares); $i++) {
+            $arreglo_split = array(); 
+            while ($i < count($arreglo_lugares) and $i <= 5) {
+                array_push($arreglo_split, $arreglo_lugares[$i]);
+                if (count($rutas)<=3 or count($rutas)>0) {
+                    array_push($rutas, $this->crearRutas($arreglo_split, $distancia, $tiempo));
+                    //$rutas->add($this->crearRutas($arreglo_lugares[$i], $distancia, $tiempo));
+                }
+                $i++;
+            }
+            
+        }
+
+       return  $rutas;
     }
 
     public function crearRutas($lugares, $distancia, $tiempo){
@@ -202,51 +215,6 @@ class RutaTuristicaController extends Controller
 
 
                 return $ruta;
-
-      /* $listaRutas = array();
-        $sumDist = 0;
-        $sumTiemp = 0;
-        $ruta = array();
-        $distanciaMaxima=$this->distanciaMaxima($distancia);
-        $tiempoMaximo=$this->tiempoMaximo($tiempo);
-
-        $sumDist = $listaOrdenadaLugares[0]->distancia_ubicacion;
-        $sumTiemp = $listaOrdenadaLugares[0]->tiempo_llegada_ubicacion;
-        $bandera = false;
-        $val = count($listaOrdenadaLugares);
-        array_push($listaOrdenadaLugares, null);
-        for ($i=0; $i < $val; $i++) { 
-
-            while ($sumTiemp<=$tiempoMaximo && $sumDist<=$distanciaMaxima && count($listaOrdenadaLugares)>0) {
-                    
-                    
-                        if($listaOrdenadaLugares[$i] = null){
-                            return $listaRutas;
-                        } else{
-                            if($bandera){
-                            $sumDist = $sumDist+($listaOrdenadaLugares[$i][5]);
-                            $sumTiemp = $sumTiemp+($listaOrdenadaLugares[$i][6]);
-                            }
-                            array_push($ruta, $listaOrdenadaLugares[$i]);
-                            array_shift($listaOrdenadaLugares);
-                        }
-                    
-                    $bandera = true;
-                    $i++;
-            }
-
-            if (count($ruta)==0) {
-                return $listaRutas;
-            } else {
-                array_push($listaRutas, $ruta);
-
-                $sumDist = $listaOrdenadaLugares[$i][5];
-                $sumTiemp = $listaOrdenadaLugares[$i][6];
-                $bandera = false;
-            }
-        }
-
-        return $listaRutas;*/
         }
          
     }
