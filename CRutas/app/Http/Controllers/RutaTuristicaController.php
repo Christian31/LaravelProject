@@ -255,14 +255,8 @@ return $tiempoMaximo;
 
 //LOS METODOS QUE ESTAN ACA ABAJO SON PARA LO DEL RECORRIDO VIRTUAL
 public function crearRecorridoVirtual($idRuta){
-    if($idRuta==1){
-       $ruta= Session::get($idRuta);
-    }else if ($idRuta==2){
-         $ruta= Session::get($idRuta);
 
-    }else{
-         $ruta= Session::get(3);
-    }
+    $ruta= Session::get($idRuta);
  
    $listaLugaresVirtuales= array();
    foreach ($ruta->lista_lugares as $valor) {

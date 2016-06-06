@@ -38,7 +38,7 @@
           <td><h5>{{$i+1}}</h5></td>
             <td><h5>{{$rutas[$i]->tiempo_total}} horas</h5></td>
              <td><h5>{{$rutas[$i]->distancia_total}} Km</h5></td>
-             <td><a href="{!!URL::to('crearRecorridoVirtual/'{{$i+1}})!!}"><h5>Ver</h5></a></td>
+             <td><a href="{!!URL::to('crearRecorridoVirtual' , array('idRuta' => $i+1))!!}"><h5>Ver</h5></a></td>
           </tr>
           @endfor
          
