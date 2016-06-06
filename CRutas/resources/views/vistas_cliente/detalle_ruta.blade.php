@@ -1,14 +1,19 @@
 @extends('vistas_cliente.layoutCliente')
 
 @section('contenido')
-<link href="cliente/icomoon/iconos.css" rel='stylesheet' type='text/css' />
+<!--<link href="(cliente/icomoon/iconos.css" rel='stylesheet') type='text/css' />
 <link href="cliente/css/galeria.css" rel='stylesheet' type='text/css' />
 
-<script type="text/javascript" src="cliente/js/jquery.slides.js"></script>
+<script type="text/javascript" src="cliente/js/jquery.slides.js"></script>-->
 <!--<script src="http://maps.googleapis.com/maps/api/js?v3></script>-->
  <!--<script src="http://maps.googleapis.com/maps/api/js?v3"></script>-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCX-4KNnBze_bjEig4PR96yHsLKpPCEHQ"></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCX-4KNnBze_bjEig4PR96yHsLKpPCEHQ"></script>-->
 <!--<script src={{ URL::asset('https://maps.googleapis.com/maps/api/js?key=AIzaSyBCX-4KNnBze_bjEig4PR96yHsLKpPCEHQ') }}></script>-->
+{!!Html::style('cliente/icomoon/iconos.css')!!}
+{!!Html::style('cliente/css/galeria.css')!!}
+{!!Html::script('cliente/js/jquery.slides.js')!!}
+{!!Html::script('https://maps.googleapis.com/maps/api/js?key=AIzaSyBCX-4KNnBze_bjEig4PR96yHsLKpPCEHQ')!!}
+
 <div class="main_bg"><!-- start main -->
   <div class="container">
     <div class="main_grid1">
@@ -56,7 +61,7 @@
 
 
 @foreach($lugar->lista_imagenes as $imagen)
-      <img height="300" src="../public/imagenes/{{$imagen->ruta_imagen}}">
+      <img height="300" src="../../public/imagenes/{{$imagen->ruta_imagen}}">
        @endforeach
     </div>
      @endif

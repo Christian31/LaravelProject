@@ -9,33 +9,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <head>
 <title>CRutas</title>
 <!-- Bootstrap -->
+{!!Html::style('cliente/css/bootstrap.min.css')!!}
+{!!Html::style('cliente/css/bootstrap.css')!!}
 
-
-<link href="cliente/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
-<link href="cliente/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="cliente/css/blue.css" rel="stylesheet" type="text/css" media="all" />
+{!!Html::style('cliente/css/blue.css')!!}
 <!--font-Awesome-->
-   	<link rel="stylesheet" href="cliente/fonts/css/font-awesome.min.css">
+{!!Html::style('cliente/fonts/css/font-awesome.min.css')!!}
 <!--font-Awesome-->
 <!-- start plugins -->
-<script type="text/javascript" src="cliente/js/jquery.min.js"></script>
-<script type="text/javascript" src="cliente/js/bootstrap.js"></script>
-<script type="text/javascript" src="cliente/js/bootstrap.min.js"></script>
+{!!Html::script('cliente/js/jquery.min.js')!!}
+{!!Html::script('cliente/js/bootstrap.js')!!}
+{!!Html::script('cliente/js/bootstrap.min.js')!!}
 <!--start slider -->
-    <link rel="stylesheet" href="cliente/css/fwslider.css" media="all">
-    <script src="cliente/js/jquery-ui.min.js"></script>
-    <script src="cliente/js/css3-mediaqueries.js"></script>
-    <script src="cliente/js/fwslider.js"></script>
+{!!Html::style('cliente/css/fwslider.css')!!}
+{!!Html::script('cliente/js/jquery-ui.min.js')!!}
+{!!Html::script('cliente/js/css3-mediaqueries.js')!!}
+{!!Html::script('cliente/js/fwslider.js')!!}
 <!--end slider -->
 <!-- must have -->
-<link href="cliente/css/allinone_carousel.css" rel="stylesheet" type="text/css">
-<script src="cliente/js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
-<script src="cliente/js/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
-<script src="cliente/js/allinone_carousel.js" type="text/javascript"></script>
-<script src="cliente/js/route.js" type="text/javascript"></script>
-
+{!!Html::style('cliente/css/allinone_carousel.css')!!}
+{!!Html::script('cliente/js/jquery-ui-1.8.16.custom.min.js')!!}
+{!!Html::script('cliente/js/jquery.ui.touch-punch.min.js')!!}
+{!!Html::script('cliente/js/allinone_carousel.js')!!}
+{!!Html::script('cliente/js/route.js')!!}
  @yield('scripts') 
 <!--[if IE]><script src="js/excanvas.compiled.js" type="text/javascript"></script><![endif]-->
 <!-- must have -->
@@ -62,7 +60,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		});
 	</script>-->
 <!-- Owl Carousel Assets -->
-<link href="cliente/css/owl.carousel.css" rel="stylesheet">
+{!!Html::style('cliente/css/owl.carousel.css')!!}
 <!---<script src="js/owl.carousel.js"></script>
 		<script>
 			$(document).ready(function() {
@@ -206,7 +204,7 @@ $(document).ready(function() {
 			<!--<li id="buscar"><a href="{!!URL::to('rutaTuristica')!!}">Buscar rutas turísticas</a></li>-->
 		</ul>
 		</nav>
-		<script src="cliente/js/menu.js" type="text/javascript"></script>
+		{!!Html::script('cliente/js/menu.js')!!}
 		</div>
 		<div class="clearfix"></div>
 	</div>
