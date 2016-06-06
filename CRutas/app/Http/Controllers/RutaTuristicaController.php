@@ -220,21 +220,12 @@ array_push($rutas, $ruta3);
                 $tiempoRuta=$tiempoSum;
                 array_push($rutaUno, $lugar);
             }
-
-
-
         }
 
         $ruta->distancia_total= $distanciaRuta;
         $ruta->tiempo_total= $tiempoRuta;
         $ruta->lista_lugares= $rutaUno;
-            }else if(count($lugares)<=10){ //se hacen dos rutas
-
-
-                }else{// se hacen tres rutas
-
-
-                }
+            }
 
 
 
