@@ -39,18 +39,37 @@ class RutaTuristicaController extends Controller
        $tiempo = $_POST['selectTiempo'];
        $precio= $_POST['selectPrecio'];
        $tipo_lugar=  $_POST['selectTipo'];
-       $rutas= $this->buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar, $distancia, $tiempo);
+       $rutass= $this->buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar, $distancia, $tiempo);
       //  return response()->json(['mensaje'=>  count($lugares)]);
-       if(count($rutas)==0){
+       if(count($rutass)==0){
         Session::flash('error', "No hay rutas disponibles");
         return Redirect::to('/');
           //hay q mostrar un mensaje de que no hay rutas disponibles
        }else{
+          $rutas = array();
+          $ruta1= Session::get(1);
+          $ruta2= Session::get(2);
+          $ruta3= Session::get(3);
+          array_push($rutas, $ruta1);
+          array_push($rutas, $ruta2);
+          array_push($rutas, $ruta3);
            return view('vistas_cliente.listaBusqueda', array('rutas'=>$rutas));
        }
         
   
         
+    }
+
+    public function volverResultadosBusqueda(){
+        $rutas = array();
+     $ruta1= Session::get(1);
+    $ruta2= Session::get(2);
+    $ruta3= Session::get(3);
+array_push($rutas, $ruta1);
+array_push($rutas, $ruta2);
+array_push($rutas, $ruta3);
+
+        return view('vistas_cliente.listaBusqueda', array('rutas'=>$rutas));
     }
 
     private function buscarLugaresTuristicos($ubicacion, $precio, $tipo_lugar, $distancia, $tiempo){
